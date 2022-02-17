@@ -1,0 +1,100 @@
+  .form-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.top {
+  padding-top: 130px;
+}
+
+.app-wrapper {
+    background-color: white;
+    border: .3px solid rgb(100, 100, 100);
+      min-width: 370px;
+      box-sizing: border-box;
+      border-radius: 5px;
+      margin: 10px 0;
+  }
+  
+  .title {
+    color:  grey;
+    text-align: center;
+  }
+  
+  .form-name,
+  .email,
+  .password {
+    margin: 20px;
+    color: gray;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  .password {
+    margin-bottom: 40px;
+  }
+  
+  .input {
+    height: 32px;
+    font-size: 15px;
+    outline: none;
+    width: 100%;
+    border-top-style: none;
+    border-left-style: none;
+    border-right-style: none;
+    border-bottom-style: .3px solid black;
+    margin-bottom: 15px;
+  
+  }
+  .error {
+    font-size: 14px;
+    color: red;
+  }
+  .submit {
+    display: flex;
+    font-size: 16px;
+    border-radius: 25px;
+    color: white;
+    background-color: linear-gradient((to right, pink, rgb(68, 0, 11)));
+    margin: auto;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    transition: all .1s;
+    text-align: center;
+    justify-content: center;
+  }
+  button:active {
+    transform: translate(2px);
+  }
+  .form-sucess {
+    display: flex;
+    justify-content: center;
+    margin-top: 250px;
+    color: pink
+  }
+
+  .formLink {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    cursor: pointer;
+
+  }
+
+  .formLink p {
+    font-size: 13px;
+    color:rgb(68, 0, 11);
+    border: .2px solid gray;
+    border-radius: 15px;
+    padding: 3px 5px;
+    transition: .3s ease-in;
+  }
+
+  .formLink p:hover {
+    color: white;
+    background-color: pink;
+    border: .2px solid white;
+  }
