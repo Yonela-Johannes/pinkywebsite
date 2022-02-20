@@ -9,7 +9,11 @@
 }
 .appBar {
   box-shadow: none;
-  border-bottom: 1px solid rgb(150, 150, 150);
+  border-bottom: 1px solid rgb(226, 226, 226);
+}
+
+.appBar .line{
+  border-bottom:  none;
 }
 .name {
   flex-grow: 1;
@@ -27,6 +31,29 @@
 .image {
   margin-right: 10px;
 }
+.avatar {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
+
+.username {
+  padding: 0 10px;
+  color: grey;
+  font-size: 12px;
+  font-weight: bold;
+}
+.jobTitle {
+  padding: 0 10px;
+  color: grey;
+  font-size: 10px;
+}
+.login {
+  padding: 0 10px;
+  color: rgb(255, 183, 183);
+  font-size: 12px;
+  font-weight: bold;
+}
 .grow {
   flex-grow: 1;
   display: flex;
@@ -34,30 +61,61 @@
   justify-content: space-evenly;
 }
 
+.list {
+  display: flex;
+  flex-direction: column;
+  align-items:  center;
+  list-style: none;
+  cursor: pointer;
+}
+
+.list:hover {
+  transform: scaleX(1.1) scaleY(1.1);
+  border-radius: 50%;
+}
+
 .inputRoot {
   color: inherit;
 }
-.button {
-  /* background-color: rgb(121, 121, 121); */
-}
+
 .navList {
-  text-decoration: none;
   display: flex;
   justify-content:  space-around;
   list-style: none;
+  text-decoration: none;
   align-items: center;
   padding-right: 50;
-}
-.navLink {
-  padding-left: 50;
+  width: 330px;
 }
 a{
   color: pink;
   text-decoration: none;
   padding: 5px;
 }
-.icon{ 
-  color: pink;
+.badge {
+  color: black;
+  font-weight: bold;
+}
+.icon{
+  color: rgb(3, 3, 3);
+  width: 20px;
+  height: 35px;
+}
+.icon:hover{
+  background-color: rgb(236, 236, 236);
+  border-radius: 50%;
+}
+
+.adminIcon {
+  color: green;
+  background-color: pink;
+  border-radius: 50%;
+}
+.logout {
+  color: gray;
+}
+.iconDisabled {
+  color: rgb(223, 223, 223);
 }
 
 /* Mobile */
@@ -74,5 +132,11 @@ a{
   }
   .grow{
     flex-direction: column;
+  }
+  .list {
+    display: flex;
+    flex-direction: row;
+    align-items:  center;
+    justify-content: space-between;
   }
 }

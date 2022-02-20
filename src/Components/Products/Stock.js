@@ -45,17 +45,12 @@ const Stock = ({ stock }) => {
   // let [countCartStock, setCountCartStock] = useState(countCart);
   let [newCartProduct, setNewCartProduct] = useState([]);
 
-  // console.log('Stock Count', countCartStock)
-
   const addToCart = () => {
     // alert(`You have added product to list: ${cartProduct.name}, ${cartProduct.id}`)
     setCartProduct(cartProduct)
     newCartProduct.push(cartProduct)
     setCartProduct(newCartProduct.id)
-    console.log(newCartProduct)
-    // (!countCartStock &&  newCartProduct.length);
-    // console.log('Counted Count',countCartStock)
-    // console.log(newCartProduct.length)
+
   }
 
     return <div>

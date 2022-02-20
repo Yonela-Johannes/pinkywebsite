@@ -2,7 +2,6 @@ import React from 'react';
 import { styled, Grid, Paper, Box, Container, Button, AppBar, Toolbar, Typography , IconButton, ThemeProvider, createTheme, } from '@mui/material';
 import products from '../../data/products'
 import './styles.css'
-console.log(products.length)
 const Cart = () => {
     // const isEmpty = !products.length; 
     const isEmpty = false; 

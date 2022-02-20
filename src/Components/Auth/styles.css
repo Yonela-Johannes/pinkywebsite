@@ -98,3 +98,50 @@
     background-color: pink;
     border: .2px solid white;
   }
+
+
+  /* login page */
+
+  .loginTitle{
+    font-size: 18px;
+    font-weight: 0;
+    margin: 0 auto;
+    padding: 10px 20px;
+  }
+  
+  p.or{
+    font-size: 14px;
+    font-weight: bold;
+    color: gray;
+  }
+  .subtitle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+  }
+  
+  .loginButton {
+    display: flex;
+    flex-direction: row;
+    align-items:  center;
+    padding: 0 20px;
+    justify-content: center;
+    cursor: pointer;
+  }
+  
+  .facebook {
+    background-color: #3b5998;
+    cursor: pointer;
+  }
+  .facebook:hover {
+    background-color: #4f75c7;
+  }
+  
+  .google {
+    background:linear-gradient(-120deg, #4285f4, #34a853, #fbbc05, #ea4335);
+    cursor: pointer;
+  }
+  .google:hover {
+    background:linear-gradient(-120deg, #5395ff, #34a853, #ffdb70, #fd5849);
+  }

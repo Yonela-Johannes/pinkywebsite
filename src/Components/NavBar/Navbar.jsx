@@ -1,30 +1,47 @@
 import React from 'react';
-import { styled, Grid, Paper, Box, Container, Button, AppBar, Toolbar, Typography , IconButton, ThemeProvider, createTheme, } from '@mui/material';
-import LOGO from '../../img/logopinky.png'
-import ShoppingBasketOutlinedIcon from '@mui/icons-material/ShoppingBasketOutlined';
-import { Badge } from '@mui/material';
 import Navigation from './Navigation';
+import avatar from '../../img/avatar.png'
+import Logo from '../../img/logopinky.png'
+import { Link } from 'react-router-dom'
 import './style.css'
 
-const LogoImage = {
+const Navbar = ( props ) => {
+  const { countCartItems, user } = props;
+
+  const LogoImage = {
     width: 40,
     height: 50,
     borderRadius: 25,
     padding: 5,
 }
-
-const Navbar = ( props ) => {
-  const { countCartItems } = props;
   return (
          <nav className='navBar'>
               <div className='grow'>
-                {/* <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                  <img src={LOGO} style={LogoImage} alt="logo" />
-                </Typography> */}
-                <div className="name">
+                <Link to='/' className="name">
+                  <img src={Logo} style={LogoImage} alt="logo" />
                   Be Pleasured By Pinky
-                </div>
-              <Navigation countCartItems={countCartItems} />
+                </Link>
+                { user ? (
+                  <ul className='list'>
+                    <li className='listItem'>
+                      <img className='avatar' src={user.image} alt='' />
+                    </li>
+                    <li className='listItem username'>{user?.userName}</li>
+                    <li className='listItem jobTitle'>{user.jobTitle}</li>
+                  </ul>
+                ) : (
+                  <Link to='/signin'>
+                    <ul className='list'>
+                      <li className='listItem'>
+                        <img className='avatar' src={avatar} alt='user avatar' />
+                      </li>
+                      <li className='listItem username'>Jane Doe</li>
+                      <li className='listItem login'>log in</li>
+                    </ul>
+                  </Link>
+                )}
+
+              <Navigation countCartItems={countCartItems} user={user} />
               </div>
         </nav>
   )

@@ -5,7 +5,7 @@ import Basket from './Basket';
 import './styles.css'
 const ShoppingCart = (props) => {
   const { products, onAdd, onRemove, cartItems } = props;
-  console.log(products)
+
   return (
     <div className='main'>
         <h3 className='head'>Shopping List</h3>

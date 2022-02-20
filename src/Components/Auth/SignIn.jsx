@@ -1,52 +1,65 @@
-import React, {useState} from 'react'
+import React, {useState} from 'react';
 import Validation from './validation';
 import {NavLink} from 'react-router-dom'
-import './styles.css'
+import { FcGoogle } from "react-icons/fc";
+import GoogleLogin from 'react-google-login';
+import { useNavigate } from 'react-router-dom';
+import { TiSocialFacebookCircular } from "react-icons/ti";
+import logo from '../../img/logopinky.png';
+import bgImage from '../../img/60.png';
+import './styles.css';
 
+import { client } from '../../client';
 
 export default function SignIn() {
-    const [values, setValues ] = useState({
-        name: "",
-        email: "",
-        password: "",
-    });
-    const [errors, setErrors] = useState({})
+    const navigate = useNavigate()
 
-    const handleChange = (event) => {
-        setValues({...values, 
-            [event.target.name]: event.target.value,
-        });
-    };
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        setErrors(Validation(values))
+
+    const responseGoogle = (response) => {
+        localStorage.setItem('user', JSON.stringify(response.profileObj));
+        const { name, googleId, imageUrl, email } = response.profileObj;
+        const doc = {
+            _id: googleId,
+            _type: 'user',
+            userName: name,
+            image: imageUrl,
+            email: email,
+        }
+
+        client.createIfNotExists(doc)
+        .then(() => {
+            navigate('/', { replace: true })
+        })
     }
+
   return (
     <div className='form-container'>
         <div className='app-wrapper'>
             <div>
-                <h2 className='title'>Log In</h2>
+                <img src={logo} className='logo' alt="" />
             </div>
-            <form className="form-wrapper">
-                <div className='form-name'>
-                    <label className='label'>Email</label>
-                    <input className='input' type='email' name='email' value={values.email} onChange={handleChange} />
-                    {errors.email && <p className="error">{errors.email}</p>}
-                </div>
-                <div className='form-name'>
-                    <label className='label'>Password</label>
-                    <input className='input' type='password' name='password' value={values.password} onChange={handleChange} />
-                    {errors.password && <p className="error">{errors.password}</p>}
-                </div>
-                <div>
-                    <button className='submit' onClick={handleSubmit}>Sign In</button>
-                </div>
-            </form>
-            <p className='formLink'>Don't have account?
-                <NavLink to='/signup'>
-                    <p>Sign Up</p>
-                </NavLink>
-            </p>
+            <div>
+                <p className='loginTitle'>Sign In</p>
+            </div>
+            <div className='loginWrapper'>
+                <GoogleLogin
+                    // clientId={process.env.REACT_APP_GOOGLE_API_TOKEN}
+                    clientId= '1012340695541-l7j2gt5f7pcjsq2kf7ar6oigmoqmiqum.apps.googleusercontent.com'
+                    render={(renderProps) => (
+                        <div 
+                            type='button' 
+                            className='loginButton google' 
+                            onClick={renderProps.onClick}
+                            disabled={renderProps.disabled}
+                            >
+                            <FcGoogle /><p>Sign in with Google</p>
+                        </div>
+                    )}
+                    onSuccess={responseGoogle}
+                    onFailure={responseGoogle}
+                    cookiePolicy='single_host_origin'
+                />
+            </div>
         </div>
     </div>
   )

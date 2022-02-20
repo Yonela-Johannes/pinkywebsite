@@ -1,55 +1,77 @@
 import React from 'react';
-import { styled, Grid, Paper, Box, Container, Button, AppBar, Toolbar, Typography , IconButton, ThemeProvider, createTheme, } from '@mui/material';
-import LOGO from '../../img/logopinky.png'
-import ShoppingBasketOutlinedIcon from '@mui/icons-material/ShoppingBasketOutlined';
-import DynamicFeedOutlinedIcon from '@mui/icons-material/DynamicFeedOutlined';
-import ReviewsOutlinedIcon from '@mui/icons-material/ReviewsOutlined';
+import { MdOutlineAdminPanelSettings } from "react-icons/md";
+import { MdOutlineDynamicFeed } from "react-icons/md";
+import { MdOutlineShoppingBag } from "react-icons/md";
+import { BiLogIn } from "react-icons/bi";
+import { BiLogOut } from "react-icons/bi";
+import { AiOutlineShop } from "react-icons/ai";
+import { VscFeedback } from "react-icons/vsc";
 import { Badge } from '@mui/material';
+import { GrBlog } from "react-icons/gr";
 import './style.css'
-import {NavLink} from 'react-router-dom'
-const LogoImage = {
-    width: 40,
-    height: 50,
-    borderRadius: 25,
-    padding: 5,
-}
+import {NavLink, Link} from 'react-router-dom'
+
 
 const Navigation = (props) => {
-    const {countCartItems} = props;
+    const {countCartItems, user, admin } = props;
   return (
-         <nav className='appBar'>
+         <nav className={user ? 'appBar' : 'appBar line'}>
                 <div className='grow'>
                     <div className='button'>
                             <ul className='navList'>
-                                <NavLink to='/'>
-                                    <IconButton aria-label='Home page'>
-                                    <img src={LOGO} style={LogoImage} alt="logo" />
-                                    </IconButton>
-                                </NavLink>
+                                <li className='navLink'>
+                                    <NavLink to='/'>
+                                        <div aria-label='Show cart items' color='inherit'>
+                                            <AiOutlineShop className='icon' />
+                                        </div>
+                                    </NavLink>
+                                </li>
                                 <li className='navLink'>
                                     <NavLink to='/cart'>
-                                        <IconButton aria-label='Show cart items' color='inherit'>
-                                            <Badge className='icon' badgeContent={countCartItems}>
-                                                <ShoppingBasketOutlinedIcon className='icon' />
-                                            </Badge>
-                                        </IconButton>
+                                        <div aria-label='Show cart items' color='inherit'>
+                                            <Badge className='badge' badgeContent={countCartItems} />
+                                                <MdOutlineShoppingBag className='icon' />
+                                        </div>
                                     </NavLink>
                                 </li>
                                 <li className='navLink'><NavLink to='/feeds'>
-                                        <IconButton aria-label='Newsfeeds' color='inherit'>
-                                            <DynamicFeedOutlinedIcon className='icon' />
-                                        </IconButton>
+                                        <div aria-label='Newsfeeds' color='inherit'>
+                                            <MdOutlineDynamicFeed className={user ? 'icon' : 'iconDisabled'}/>
+                                        </div>
                                     </NavLink></li>
                                 <li className='navLink'><NavLink to='/testimonials'>
-                                         <IconButton aria-label='Testimonials' color='inherit'>
-                                            <ReviewsOutlinedIcon className='icon' />
-                                        </IconButton>                                   
+                                         <div className='headerButton' aria-label='Testimonials' color='inherit'>
+                                            <VscFeedback className={user ? 'icon' : 'iconDisabled'}/>
+                                        </div>                                   
                                     </NavLink></li>
-                                <li className='navLink'><NavLink to='/signin'>
-                                         <IconButton aria-label='Testimonials' color='inherit'>
-                                            <div className="signin">Sign In</div>
-                                        </IconButton>                                   
+                                <li className='navLink'>
+                                    <NavLink to='/blog'>
+                                         <div aria-label='Blog' color='inherit'>
+                                            <GrBlog className='icon' />
+                                        </div>                                   
                                     </NavLink></li>
+                                    {
+                                        admin ? (
+                                            <li className='navLink'><NavLink to='/admin'>
+                                                    <div className='headerButtons' aria-label='Administration' color='inherit'>
+                                                    <MdOutlineAdminPanelSettings className='icon adminIcon' />
+                                                    </div>                                   
+                                                </NavLink></li>
+
+                                        ) : ''
+                                    }
+                                    {
+                                    !admin ? (
+                                    <li className='navLink'>
+                                        <NavLink to='/signin'>
+                                            <div aria-label='sign out' color='inherit'>
+                                                <BiLogIn className='icon logout' />
+                                            </div>                                   
+                                        </NavLink></li>
+
+                                    ) : 
+                                    admin && ("") 
+                                }
                             </ul>
                     </div>
 
