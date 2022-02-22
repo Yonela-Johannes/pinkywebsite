@@ -3,13 +3,16 @@ export const userQuery = (userId) => {
     return query;
 }
 
-export const feedQuery = `*[_type == 'pin] | order(_createdAt desc)
+export const feedQuery = `*[_type == "pin"]
     {
         image{
             asset -> {
                 url
             }
         },
+        releaseDate,
+        shortDesciption,
+        longDescription,
         _id,
         destination,
         postedBy -> {
@@ -27,15 +30,51 @@ export const feedQuery = `*[_type == 'pin] | order(_createdAt desc)
         },
     }`
 
-export const blogPost = `*[_type = "post]{
-    title,'
+// export const blogPost = `*[_type = "post"]{
+//     title,
+//     slug,
+//     body,
+//     mainImage {
+//       asset -> {
+//         _id,
+//         url
+//       },
+//       alt
+//     }
+//   }`
+
+export const productsQuery = `*[_type == "products"]{
+    _id,
     slug,
-    body,
-    mainImage {
-      asset -> {
+    title,
+    name,
+    price,
+    "imageUrl": image.asset->url,
+    postedBy -> {
         _id,
-        url
-      },
-      alt
+        userName,
+        image
+    },
+}`
+
+export const feedbackQuery = `*[_type == "feedback"]{
+    _id,
+    name,
+    message,
+    "imageUrl": image.asset->url,
+}`
+
+export const post = `*[_type == "post"]{
+    _id,
+    admin,
+    description,
+    longDescription,
+    releaseDate,
+    slug,
+    admin,
+    image {
+        asset -> {
+            url
+        }
     }
-  }`
+}`

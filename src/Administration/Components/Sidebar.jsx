@@ -23,9 +23,6 @@ export default function Sidebar() {
                         <FaBlog className='sidebarIcon' />blog
                     </li>
                     <li className="sidebarListItem">
-                        <MdOutlineFeed className='sidebarIcon' />feedback
-                    </li>
-                    <li className="sidebarListItem">
                         <FaComments className='sidebarIcon' />comments
                     </li>
                 </ul>

@@ -1,0 +1,130 @@
+
+.content{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    justify-items: center;
+}
+.cart{
+    display: flex;
+    font-size: 25px;
+    font-weight: bold;
+    color: #fa5080 ;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    margin: 5px;
+    border: 1.5px solid #fa5080 ;
+    padding: 5px;
+    background-color: rgb(14, 3, 17);
+    border-radius: 20px;
+    cursor: pointer;
+    transition: 0.3s ease-in;
+}
+
+.cart:hover{
+    background-color: transparent;
+    color:rgb(255, 192, 203);
+    border: 1.5px solid #eea5ba ;
+}
+
+.icon{
+    padding:0 10px;
+}
+
+.addButton{
+    color: pink;
+}
+
+.slider {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+    background-color: rgb(255, 192, 203);
+    border-radius: 20px;
+}
+.prev {
+    position: absolute;
+    padding: 10px;
+    z-index: 9;
+    /* bottom: 1; */
+    left: 0;
+}
+.next {
+    position: absolute;
+    padding: 10px;
+    z-index: 9;
+    right: 0;
+}
+.slide{
+    position: absolute;
+    /* top: 10; */
+    /* left: 0; */
+    width: 100%;
+    /* height: 100%; */
+    opacity: 0;
+    transform: translateX(-50);
+    /* padding: 10px; */
+}
+.slide img{
+    border-radius: 15px;
+    height: 100px;
+    width: 100px;
+}
+.container img{
+    border-radius: 15px;
+    height: 100px;
+    width: 100px;
+    cursor: pointer;
+}
+.current{
+    opacity: 1;
+    transform: translateX(0)
+}
+
+.title{
+    cursor: pointer;
+}
+.sub {
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+.amount {
+    cursor: pointer;
+}
+
+.containerSlider {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 20px;
+    border-radius: 15px;
+    border: .3px solid rgb(252, 210, 217);
+}
+
+img.sliderImage {
+    background-color: pink;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.responseName {
+    font-weight: bold;
+    color: grey;
+    font-size: 13px;
+}
+.responseMessage {
+    font-size: 15px;
+    word-spacing: .3px;
+    color: rgb(39, 39, 39);
+    line-height: 19.5px;
+    background-color: #eea5bab2;
+    padding: 5px;
+    border-radius: 15px;
+    margin-top: 5px;
+}

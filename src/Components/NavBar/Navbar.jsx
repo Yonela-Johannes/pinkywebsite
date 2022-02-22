@@ -7,7 +7,6 @@ import './style.css'
 
 const Navbar = ( props ) => {
   const { countCartItems, user } = props;
-
   const LogoImage = {
     width: 40,
     height: 50,

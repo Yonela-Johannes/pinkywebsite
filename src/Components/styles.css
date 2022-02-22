@@ -31,8 +31,7 @@
 .product-name {
     color: rgb(112, 112, 112);
     font-size: 16px;
-    font-weight: 800;
-    font-family: mina, serif;
+    padding: 10px;
 }
 .product-price {
     color: rgb(102, 9, 24);

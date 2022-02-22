@@ -1,26 +1,44 @@
 import './styles.css';
-import { posts } from '../data/data';
+import React, {useState, useEffect} from 'react';
 import BlogCard from '../Components/BlogCard/BlogCard';
-import Post from '../Components/BlogCard/Post';
 import { client } from '../client';
-import { Link, useParams } from 'react-router-dom'
-import { blogPost } from '../utils/data';
+import Spinner from '../Components/Post/Feed.js/Spinner';
+import { post } from '../utils/data';
+import Responses from './Responses';
 
-export default function Blog() {
-  return (
-    <div className='main'>
-        {/* <div className='blogHome'>
-            {posts.map(post => (
-                <BlogCard key={post.id} post={post}/>
-            ))
-            }
-        </div> */}
-        <div className='blogHome'>
-            {posts.map(post => (
-                <BlogCard key={post.id} post={post}/>
-            ))
-            }
-        </div>
-    </div>
-  )
+
+
+export default function Blog({user, admin}) {
+    const [load, setLoad ] = useState(false)
+    const [blogPost, setBlogPost] = useState(null) 
+    
+    useEffect(() => {
+        setLoad(true)
+          client.fetch(post)
+          .then((data) => {
+              setBlogPost(data);
+              console.log(data)
+            })
+            setLoad(false)
+    }, []); 
+
+   const message = 'We are loading blogs from database!'
+    return (
+            <Responses />
+        // <div className='main'>
+        //     {blogPost && !load ? (
+        //         <div className='blogHome'>
+        //             {blogPost.map(post => (
+        //                 <BlogCard key={post._id} post={post} admin={admin} user={user} />
+        //                 ))
+        //             }
+        //         </div>
+
+        //         ): (
+        //             <div className='blogHome'>
+        //                 <Spinner message={message} />
+        //             </div>
+        //     )}
+        // </div>
+    )
 }

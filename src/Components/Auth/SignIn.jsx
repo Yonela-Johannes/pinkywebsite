@@ -17,11 +17,12 @@ export default function SignIn() {
 
     const responseGoogle = (response) => {
         localStorage.setItem('user', JSON.stringify(response.profileObj));
-        const { name, googleId, imageUrl, email } = response.profileObj;
+        const { name, googleId, imageUrl, email, admin } = response.profileObj;
         const doc = {
             _id: googleId,
             _type: 'user',
             userName: name,
+            admin: admin,
             image: imageUrl,
             email: email,
         }

@@ -3,12 +3,9 @@ import Navbar from './Components/NavBar/Navbar'
 import { Route, Routes, Navigate } from 'react-router-dom'
 import SignUp from './Components/Auth/SignUp';
 import ShoppingCart from './pages/ShoppingCart';
-import Feedback from './pages/Feedback';
 import Admin from './Administration/pages/Admin';
 import Feeds from './pages/Feeds';
-import { users } from './data/users'
 import Home from './pages/Home';
-import data from './pages/data';
 import Footer from './Components/Footer/Footer';
 import Signin  from './pages/Signin';
 import './app.css'
@@ -16,10 +13,11 @@ import Blog from './pages/Blog';
 import Post from './Components/BlogCard/Post';
 import { client } from './client';
 import { userQuery } from './utils/data';
-
+import { productsQuery } from './utils/data';
 
 function App() {
-  const { products } = data;
+  // const { products } = data;
+  const [products, setProducts ] = useState([])
   const [cartItems, setCartItems] = useState([]);
   // const query = userrQuery(userInfo?.googleId);
   const userInfo =  localStorage.getItem('user') !== 'undefined' ? JSON.parse(localStorage.getItem('user')) : localStorage.clear();
@@ -28,10 +26,10 @@ function App() {
   // const user = false
   const admin = false
   const onAdd = (product) => {
-    const exist = cartItems.find(x => x.id === product.id)
+    const exist = cartItems.find(x => x._id === product._id)
     if(exist){
       setCartItems(cartItems.map((x) => 
-        x.id === product.id ? {...exist, quantity: exist.quantity + 1} : x
+        x._id === product._id ? {...exist, quantity: exist.quantity + 1} : x
       ));
     } else {
       setCartItems([...cartItems, {...product, quantity: 1}])
@@ -39,12 +37,12 @@ function App() {
   };
 
   const onRemove = (product) => {
-    const exist = cartItems.find((x) => x.id === product.id);
+    const exist = cartItems.find((x) => x._id === product._id);
     if(exist.quantity === 1){
-      setCartItems(cartItems.filter((x) => x.id !== product.id));
+      setCartItems(cartItems.filter((x) => x._id !== product._id));
     }else {
       setCartItems(cartItems.map((x) => 
-      x.id === product.id ? {...exist, quantity: exist.quantity - 1} : x
+      x._id === product._id ? {...exist, quantity: exist.quantity - 1} : x
     ));  
     }
   }
@@ -55,6 +53,15 @@ function App() {
     client.fetch(query)
     .then((data) => {
       setUser(data[0])
+    })
+  },[]);
+
+  // Fetch products from database
+
+  useEffect(() => {
+    client.fetch(productsQuery)
+    .then((data) => {
+      setProducts(data)
     })
   },);
 
@@ -71,14 +78,13 @@ function App() {
               <Routes>
                 <Route path='/' element={<Home products={products} onAdd={onAdd} onRemove={onRemove} cartItems={cartItems} />} />
                 <Route path='/cart' element={<ShoppingCart products={products} onAdd={onAdd} onRemove={onRemove} cartItems={cartItems} />} />
-                <Route path='/feeds' element={user ? <Feeds /> : <Signin />} />
-                <Route path='/testimonials' element={user ? <Feedback /> : <Signin />} />
+                <Route path='/feeds' element={user ? <Feeds user={user} admin={admin} /> : <Signin />} />
                 <Route path='/Admin' element={<Admin />} />
-                <Route path='/blog' element={<Blog />} />
+                <Route path='/blog' element={<Blog user={user} admin={admin}  />} />
                 <Route path='/signin' element={user ? <Navigate to="/" /> : <Signin />} />
                 <Route path='/signup' element={<SignUp />} />
                 {/* Post routing */}
-                <Route path='/post/:id' element={user ? <Post /> : <Signin />} />
+                <Route path='/post/:slug' element={user ? <Post /> : <Signin />} />
               </Routes>
             </main>
             <Footer />
@@ -91,10 +97,9 @@ function App() {
             <Routes>
               <Route path='/' element={<Home products={products} onAdd={onAdd} onRemove={onRemove} cartItems={cartItems} />} />
               <Route path='/cart' element={<ShoppingCart products={products} onAdd={onAdd} onRemove={onRemove} cartItems={cartItems} />} />
-              <Route path='/feeds' element={user ? <Feeds /> : <Signin />} />
-              <Route path='/testimonials' element={user ? <Feedback /> : <Signin />} />
+              <Route path='/feeds' element={user ? <Feeds user={user} admin={admin}  /> : <Signin />} />
               <Route path='/Admin' element={<Admin />} />
-              <Route path='/blog' element={<Blog />} />
+              <Route path='/blog' element={<Blog user={user} admin={admin}  />} />
               <Route path='/signin' element={user ? <Navigate to="/" /> : <Signin />} />
               <Route path='/signup' element={<SignUp />} />
               {/* Post routing */}

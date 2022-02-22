@@ -39,11 +39,6 @@ const Navigation = (props) => {
                                             <MdOutlineDynamicFeed className={user ? 'icon' : 'iconDisabled'}/>
                                         </div>
                                     </NavLink></li>
-                                <li className='navLink'><NavLink to='/testimonials'>
-                                         <div className='headerButton' aria-label='Testimonials' color='inherit'>
-                                            <VscFeedback className={user ? 'icon' : 'iconDisabled'}/>
-                                        </div>                                   
-                                    </NavLink></li>
                                 <li className='navLink'>
                                     <NavLink to='/blog'>
                                          <div aria-label='Blog' color='inherit'>

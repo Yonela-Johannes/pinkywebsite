@@ -1,4 +1,3 @@
-import React, {useState} from 'react';
 import Basket from './Basket';
 import Product from '../Components/Product';
 import './styles.css'
@@ -6,7 +5,7 @@ import './styles.css'
 
 const Home = ( props ) => {
   const { products, onAdd, onRemove, cartItems } = props;
-
+  console.log(products)
   return (
     <main className='main'>
           <h2 className='head'>Products</h2>
@@ -14,7 +13,7 @@ const Home = ( props ) => {
           <div className="products">
               {
                 products.map(product => (
-                  <Product onAdd={onAdd} onRemove={onRemove} key={product.id} product={product} />
+                  <Product onAdd={onAdd} onRemove={onRemove} key={product._id} product={product} />
                   ))
                 }
               </div>

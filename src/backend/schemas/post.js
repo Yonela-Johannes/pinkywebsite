@@ -4,13 +4,18 @@ export default {
     type: 'document',
     fields: [
         {
-            name: 'title',
-            title: 'Title',
-            type: 'string',
+            name: 'description',
+            title: 'Description',
+            type: 'text',
         },
         {
-            title: 'Release date',
+            name: 'longDescription',
+            title: 'Long Description',
+            type: 'text',
+        },
+        {
             name: 'releaseDate',
+            title: 'Release date',
             type: 'date'
         },
         {
@@ -27,8 +32,8 @@ export default {
             }
           },
         {
-            name: 'Author',
-            title: 'Author',
+            name: 'admin',
+            title: 'Admin',
             type: 'reference',
             to: [
                 {

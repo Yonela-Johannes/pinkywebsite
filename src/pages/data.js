@@ -29,14 +29,14 @@ const data = {
             image: 'https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/products/cleanarchitecture.jpg',
         },
         {
-            id: '4',
+            id: '5',
             description: 'Lorem jkfdjf lkdjflks ldjfkjsl ljdjf',
             name: 'item nr 4',
             price: 10000,
             image: 'https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/products/cleanarchitecture.jpg',
         },
         {
-            id: '5',
+            id: '6',
             description: 'Lorem jkfdjf lkdjflks ldjfkjsl ljdjf',
             name: 'item nr 4',
             price: 10000,

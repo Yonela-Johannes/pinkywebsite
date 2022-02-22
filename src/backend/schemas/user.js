@@ -9,6 +9,7 @@ export default {
             name: 'admin',
             title: 'Admin',
             type: 'boolean',
+            desciption: 'string',
         },
         {
             name: 'userName',

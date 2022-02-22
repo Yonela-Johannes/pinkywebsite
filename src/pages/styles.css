@@ -1,7 +1,8 @@
 .main {
     padding-top: 110px;
     padding-bottom: 50px;
-
+    background-color: rgb(243, 243, 243);
+    width: 100%;
 }
 .testimonials {
     display: flex;
@@ -37,8 +38,7 @@
     color: rgb(50, 50, 50);
     padding: 5px;
     border-radius: 15px;
-    font-size: 32px;
-    font-family: 'Gwendolyn', sans-serif;
+    font-size: 25px;
     margin: 10px;
 
 }
@@ -155,6 +155,9 @@ button.badge {
     transform: .3s eas-in;
     background-color: red;
 }
+.swiperContainer {
+    padding: 0 120px;
+}
 .buttons .cartButtons:hover {
     color: black;
     background-color: white;
@@ -176,21 +179,35 @@ button.badge {
 
 .blogHome {
     display: flex;
-    padding: 50px 100px;
+    padding: 50px 50px;
     flex-wrap: wrap;
 }
 
 
 /* Mobile */
 
-@media only screen and (max-width: 600px ){
-
-  }
-  @media only screen and (max-width: 1000px ){
+@media only screen and (max-width: 900px ){
+    .blogHome {
+        flex-direction: column;
+        padding: 0;
+        padding: 10px 10px;
+        align-items: center;
+    }
+    
+}
+@media only screen and (max-width: 1000px ){
+    .blogHome {
+        align-items: center;
+        flex-direction: column;
+        padding: 60px 30px;
+    }
     .basket {
       display: none;
     }
     .main {
       padding-top: 160px;
+    }
+    .swiperContainer {
+        padding: 0 3px;
     }
   }
