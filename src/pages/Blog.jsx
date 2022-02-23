@@ -21,6 +21,7 @@ export default function Blog({user, admin}) {
    const message = 'We are loading blogs from database!'
     return (
         <div className='main'>
+          <h2 className='head'>Explore</h2>
             {blogPost && !load ? (
                 <div className='blogHome'>
                     {blogPost.map(post => (

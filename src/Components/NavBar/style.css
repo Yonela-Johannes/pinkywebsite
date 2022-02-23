@@ -1,7 +1,7 @@
 .navBar {
-  box-shadow: none;
   position: fixed;
   top: 0;
+  box-shadow: none;
   width: 100%;
   background-color: white;
   border-bottom: 1px solid rgba(0, 0, 0, 0.12);
