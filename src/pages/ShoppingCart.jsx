@@ -1,12 +1,8 @@
-import React, { useState } from 'react';
-import Cart from '../Components/Cart/Cart';
-import data from './data'
 import ShoppingBasket from './ShoppingBasket';
 import Spinner from '../Components/Post/Feed.js/Spinner';
 import './styles.css'
 const ShoppingCart = (props) => {
   const { onAdd, onRemove, cartItems } = props;
-  const [load, setLoad ] = useState(false)
   const message = 'Be  Pleasured by Pinky'
   return (
     <div className='mainCartContainer'>

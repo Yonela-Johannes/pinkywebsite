@@ -13,6 +13,7 @@
 .wrapper:hover {
     background-color: pink;
     color: white;
+    border-color: gray;
 }
 
 .product-container {
@@ -51,10 +52,57 @@ button{
     border-radius: 5px;
     transition: .5s ease-in;
 }
+button.homeCartButton{
+    display: flex;
+    flex-direction: row;
+    align-items:  center;
+    justify-content: flex-start;
+    color: grey;
+    width: 100px;
+    font-size: 14px;
+    padding: 5px 10px;
+    margin: 5px;
+    background-color: pink;
+    cursor: pointer;
+    border: .5px solid rgba(255, 122, 144, 0.755);
+    border-radius: 5px;
+    transition: .5s ease-in;
+}
+button.homeShoppingCartButton{
+    display: flex;
+    flex-direction: row;
+    align-items:  center;
+    justify-content: flex-start;
+    color: grey;
+    width: 180px;
+    font-size: 14px;
+    padding: 5px 10px;
+    margin: 10px;
+    background-color: rgb(255, 255, 255);
+    cursor: pointer;
+    border: .5px solid rgba(164, 164, 164, 0.755);
+    border-radius: 5px;
+    transition: .5s ease-in;
+}
+button.homeShoppingCartButton:hover{
+    /* border-color: pink; */
+    background-color: pink;
+}
+button.homeCartButton:hover{
+    border-color: gray;
+}
+.homeCartButton > div{
+    font-size: 10px;
+    color: grey;
+}
 
 button:hover {
     background-color: white;
 }
 .text-right {
     text-align: right;
+}
+.homeCartIcon{
+    font-size: 18px;
+    padding: 3px 5px 3px 0;
 }

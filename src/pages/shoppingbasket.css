@@ -7,6 +7,7 @@
     margin: 5px;
     border-radius:  15px;
 }
+
 .cartTitle {
     font-size: 18px;
     color: gray;
@@ -19,6 +20,7 @@
 .row {
     display: flex;
     flex-direction: row;
+    align-items: center;
     justify-content: space-between;
 }
 hr{
@@ -33,16 +35,15 @@ hr{
     justify-content: center;
 }
 button.add {
-    width: 10px;
     border: none;
-    border: .5px solid rgba(253, 156, 172, 0.712);
+    width: 10px;
+    background-color: transparent;
 }
 button.remove {
-    background-color: rgb(255, 255, 255);
-    width: 10px;
     border: none;
-    border: .5px solid rgba(253, 156, 172, 0.712);
-}
+    width: 10px;
+    background-color: transparent;
+    }
 
 button.badge {
     background-color: grey;
@@ -51,6 +52,16 @@ button.badge {
     width: 1.5rem;
 }
 
+.cartIcon {
+    color: gray;
+    font-size: 18px;
+    padding: 3px;
+    border-radius: 50%;
+}
+
+.cartIcon:hover {
+    background-color: rgba(251, 206, 213, 0.741);
+}
 .cartWrapper {
     display: flex;
     padding: 10px;
@@ -71,6 +82,12 @@ button.badge {
 
 .cartItemName {
     font-size: 13px;
+}
+.itemCount {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
 }
 .cartDesc {
     font-weight: bold;

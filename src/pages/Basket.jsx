@@ -19,10 +19,6 @@ const Basket = (props) => {
                 {cartItems.map((item) => (
                     <div key={item.id} className='row'>
                         <div>{item.name}</div>
-                        <div className="buttons">
-                            <button className="remove" onClick={() => onRemove(item)}>-</button>
-                            <button className="add" onClick={() => onAdd(item)}>+</button>
-                        </div>
                         {item.quantity} x R {item.price.toFixed(2)}
                     </div>
                 ))}

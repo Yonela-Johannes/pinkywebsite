@@ -1,5 +1,6 @@
 import React from 'react';
 import './styles.css'
+import { FaCartArrowDown } from "react-icons/fa";
 
 export default function Product( props ) {
     const { product, onAdd} = props
@@ -12,7 +13,7 @@ export default function Product( props ) {
                 </div>
             </div>
             <div className="product-price">R {product?.price}</div>
-            <button  onClick={() => onAdd(product)}>Add To Cart</button>
-        </div>
+            <button className="homeCartButton"  onClick={() => onAdd(product)}><FaCartArrowDown className='homeCartIcon' /><div>Add To Cart</div></button>
+         </div>
     )
     }

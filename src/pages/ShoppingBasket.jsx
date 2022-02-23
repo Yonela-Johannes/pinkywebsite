@@ -1,7 +1,6 @@
-import React, {useState} from 'react';
-import data from './data'
 import './shoppingbasket.css'
-
+import { MdOutlineDeleteForever } from "react-icons/md";
+import { IoMdAddCircleOutline } from "react-icons/io";
 const ShoppingBasket = (props) => {
     const { cartItems, onAdd, onRemove } = props;
 
@@ -9,12 +8,12 @@ const ShoppingBasket = (props) => {
     const taxPrice = itemsPrice * .18;
     const deliveryPrice = itemsPrice > 200 ? 0 : 20;
     const totalPrice = itemsPrice + taxPrice + deliveryPrice;
-    let itemName = []
+
     return (
         <aside className="cartContainer">
             <h2 className="cartTitle">Cart Items</h2>
             <hr></hr>
-            <div>
+            <div className='cartContainerDetailsWrapper'>
                 {cartItems.length === 0 && <div className="title-name">Cart is Empty, add Items to cart.</div>}
                 {cartItems.map((item) => (
                     <div key={item._id} className='row'>
@@ -24,12 +23,12 @@ const ShoppingBasket = (props) => {
                         
                         </div>
                         <div className="buttons">
-                            {/* <button className="remove" onClick={() => onRemove(item)}></button> */}
-                            {/* <button className="add" onClick={() => onAdd(item)}>+</button> */}
+                            <button className="remove" onClick={() => onRemove(item)}><MdOutlineDeleteForever className='cartIcon' /></button>
+                            <button className="add" onClick={() => onAdd(item)}><IoMdAddCircleOutline className='cartIcon' /></button>
                         </div>
-                        <div className="itemCount">
-                            {item.quantity} {item.quantity === 1 || item.quantity === 0 ? 'item' : 'items'} x R {item.price.toFixed(2)}
-                        </div>
+                            <div className="itemCount">
+                                {item.quantity} {item.quantity === 1 || item.quantity === 0 ? 'item' : 'items'} x R {item.price.toFixed(2)}
+                            </div>
                         <div className='totalItemWrapper'>
                             <div className="itemsTotal">Total:</div>
                             <div style={{display: 'flex', alignItems: 'end'}}>
