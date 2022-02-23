@@ -5,7 +5,6 @@ import './styles.css'
 
 const Home = ( props ) => {
   const { products, onAdd, onRemove, cartItems } = props;
-  console.log(products)
   return (
     <main className='main'>
           <h2 className='head'>Products</h2>

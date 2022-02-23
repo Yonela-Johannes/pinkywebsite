@@ -17,11 +17,11 @@ main {
     line-height: 5px;
 }
 
-.footerLogo {
-    width: 50px;
+img.footerLogo {
+    width: 80px;
 }
-.siteLogo {
-    width: 30px;
+img.siteLogo {
+    width: 50px;
 }
 
 .footer p{
@@ -34,6 +34,13 @@ small{
 
 }
 
+.footerContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
 @media only screen and (max-width: 1000px ){
     .navBar {
       overflow-x: hidden;
@@ -44,6 +51,20 @@ small{
     .top {
         padding-top: 180px;
       }
+      .footer {
+        display: flex;
+        justify-content: space-between;
+        border-top: 1px solid gray;
+        padding: 10px 2px;
+        background-color: pink;
+        line-height: 5px;
+    }
+    img.footerLogo {
+        width: 70px;
+    }
+    img.siteLogo {
+        width: 50px;
+    }
   }
 .footerLinks {
     display: flex;

@@ -4,9 +4,6 @@ import BlogCard from '../Components/BlogCard/BlogCard';
 import { client } from '../client';
 import Spinner from '../Components/Post/Feed.js/Spinner';
 import { post } from '../utils/data';
-import Responses from './Responses';
-
-
 
 export default function Blog({user, admin}) {
     const [load, setLoad ] = useState(false)
@@ -17,28 +14,26 @@ export default function Blog({user, admin}) {
           client.fetch(post)
           .then((data) => {
               setBlogPost(data);
-              console.log(data)
             })
             setLoad(false)
     }, []); 
 
    const message = 'We are loading blogs from database!'
     return (
-            <Responses />
-        // <div className='main'>
-        //     {blogPost && !load ? (
-        //         <div className='blogHome'>
-        //             {blogPost.map(post => (
-        //                 <BlogCard key={post._id} post={post} admin={admin} user={user} />
-        //                 ))
-        //             }
-        //         </div>
+        <div className='main'>
+            {blogPost && !load ? (
+                <div className='blogHome'>
+                    {blogPost.map(post => (
+                        <BlogCard key={post._id} post={post} admin={admin} user={user} />
+                        ))
+                    }
+                </div>
 
-        //         ): (
-        //             <div className='blogHome'>
-        //                 <Spinner message={message} />
-        //             </div>
-        //     )}
-        // </div>
+                ): (
+                    <div className='blogHome'>
+                        <Spinner message={message} />
+                    </div>
+            )}
+        </div>
     )
 }

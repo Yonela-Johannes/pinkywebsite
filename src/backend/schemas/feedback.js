@@ -9,12 +9,12 @@ export default {
             type: 'string',
         },
         {
-            title: 'Message',
             name: 'message',
+            title: 'Message',
             type: 'text',
         },
         {
-            name: 'imageUrl',
+            name: 'image',
             title: 'Image',
             type: 'image',
         },

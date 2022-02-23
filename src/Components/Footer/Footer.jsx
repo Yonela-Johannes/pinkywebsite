@@ -8,7 +8,7 @@ export default function Footer() {
   return (
       <div className='footer'>
 
-        <div>
+        <div className='footerContainer'>
             <p>Be Pleasured By Pinky</p>
             <img className='siteLogo' src={siteLogo} alt='logo' />
         </div>

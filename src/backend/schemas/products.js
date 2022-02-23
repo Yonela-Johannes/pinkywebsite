@@ -9,20 +9,21 @@ export default {
             type: 'string',
         },
         {
-            title: 'Slug',
             name: 'slug',
+            title: 'Slug',
             type: 'slug',
             options: {
-              source: 'title',
-              slugify: input => input
-              .toLowerCase()
-              .replace(/\s+/g, '-')
-              .slice(0, 200)
-            }
+                source: 'title',
+                maxLength: 200, // will be ignored if slugify is set
+                slugify: input => input
+                    .toLowerCase()
+                    .replace(/\s+/g, '-')
+                    .slice(0, 200)
+              }
         },
         {
-            title: 'price',
-            name: 'Price',
+            name: 'price',
+            title: 'Price',
             type: 'number',
             options: {
                 decimalScale: 2,
@@ -30,7 +31,7 @@ export default {
               },
         },
         {
-            name: 'imageUrl',
+            name: 'image',
             title: 'Image',
             type: 'image',
         },

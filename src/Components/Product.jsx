@@ -8,7 +8,7 @@ export default function Product( props ) {
         <div className='wrapper'>
             <div className='product-name'>{product?.name}</div>
             <div className='main-container'>
-                <img className="image" src={product?.imageUrl} alt=' product ' />
+                <img className="image" src={product?.image.asset.url} alt=' product ' />
                 <div className='product-container'>
                 </div>
             </div>

@@ -46,22 +46,24 @@ export const feedQuery = `*[_type == "pin"]
 export const productsQuery = `*[_type == "products"]{
     _id,
     slug,
-    title,
     name,
     price,
-    "imageUrl": image.asset->url,
-    postedBy -> {
-        _id,
-        userName,
-        image
-    },
+    image {
+        asset -> {
+            url
+        }
+    }
 }`
 
 export const feedbackQuery = `*[_type == "feedback"]{
     _id,
     name,
     message,
-    "imageUrl": image.asset->url,
+    image {
+        asset -> {
+            url
+        }
+    }
 }`
 
 export const post = `*[_type == "post"]{

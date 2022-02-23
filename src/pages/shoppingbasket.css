@@ -1,0 +1,125 @@
+
+/* Basket */
+
+.cartContainer {
+    width: 420px;
+    padding: 5px;
+    margin: 5px;
+    border-radius:  15px;
+}
+.cartTitle {
+    font-size: 18px;
+    color: gray;
+}
+.col {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+hr{
+    background-color: black;
+    border-radius: 20px;
+    height: .5px;
+    border: none;
+}
+.buttons {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+}
+button.add {
+    width: 10px;
+    border: none;
+    border: .5px solid rgba(253, 156, 172, 0.712);
+}
+button.remove {
+    background-color: rgb(255, 255, 255);
+    width: 10px;
+    border: none;
+    border: .5px solid rgba(253, 156, 172, 0.712);
+}
+
+button.badge {
+    background-color: grey;
+    border: none;
+    color: white;
+    width: 1.5rem;
+}
+
+.cartWrapper {
+    display: flex;
+    padding: 10px;
+    align-items: center;
+    justify-content: space-between;
+    padding: 50px;
+}
+.emptyCart {
+    display: flex;
+    flex-direction: column;
+    padding: 0 10px;
+    align-items: center;
+}
+
+.cartHead {
+    font-weight: bold;
+}
+
+.cartDesc {
+    font-weight: bold;
+    font-size: 11px;
+}
+
+
+
+/* ----Blog */
+
+.blogHome {
+    display: flex;
+    padding: 50px 50px;
+    flex-wrap: wrap;
+}
+
+
+/* Mobile */
+
+@media only screen and (max-width: 900px ){
+    .blogHome {
+        flex-direction: column;
+        padding: 0;
+        padding: 10px 10px;
+        align-items: center;
+    }
+    
+}
+@media only screen and (max-width: 1000px ){
+    .main {
+        margin-top: 500px;
+        /* padding-bottom: 10px; */
+        padding: 0;
+        background-color: rgb(236, 243, 250);
+        width: 100%;
+    }
+    .blogHome {
+        align-items: center;
+        flex-direction: column;
+        padding: 60px 30px;
+    }
+    .basket {
+      display: none;
+    }
+    .swiperContainer {
+        padding: 0 3px;
+    }
+    .cartWrapper {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 50px;
+    }
+  }
