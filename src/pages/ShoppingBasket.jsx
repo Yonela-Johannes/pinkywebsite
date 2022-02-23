@@ -1,8 +1,18 @@
 import './shoppingbasket.css'
 import { MdOutlineDeleteForever } from "react-icons/md";
 import { IoMdAddCircleOutline } from "react-icons/io";
+import CartContext from '../context/cart/CartContext';
+import React, { useContext } from 'react';
+
 const ShoppingBasket = (props) => {
     const { cartItems, onAdd, onRemove } = props;
+    const { addToCart } = useContext(CartContext)
+
+    // const AddToCartHandler = () => {
+    //     addToCart(product)
+    //     onAdd(product)
+    // }
+    
     const itemsPrice = cartItems.reduce((acc, count) => acc + count.price * count.quantity, 0);
     const taxPrice = itemsPrice * .18;
     const deliveryPrice = itemsPrice > 200 ? 0 : 20;

@@ -15,7 +15,7 @@ const Home = ( props ) => {
           <div className="products">
               {
                 products.map(product => (
-                  <Product onAdd={onAdd} onRemove={onRemove} key={product._id} product={product} />
+                  <Product onAdd={onAdd} onRemove={onRemove} key={product._id} product={product} cartItems={cartItems} />
                   ))
                 }
               </div>
