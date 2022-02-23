@@ -94,9 +94,10 @@ a{
 }
 .badge {
   color: gray;
-  font-weight: bold;
-  margin: 10px;
-  border-radius: 50%;
+}
+
+.itemCount {
+  color: grey;
 }
 .icon{
   padding: 5px;

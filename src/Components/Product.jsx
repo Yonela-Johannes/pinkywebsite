@@ -6,7 +6,11 @@ import { FaCartArrowDown } from "react-icons/fa";
 
 export default function Product( props ) {
     const { addToCart } = useContext(CartContext)
-    const { product, onAdd} = props;
+    const { product, onAdd, cartItems} = props;
+    const AddToCartHandler = () => {
+        addToCart(product)
+        onAdd(product)
+    }
     return(
         <div className='wrapper'>
             <div className='product-name'>{product?.name}</div>
@@ -17,8 +21,14 @@ export default function Product( props ) {
             </div>
             <Rating value={product?.rating} text={`${product?.reviews} reviews`} />
             <div className="product-price">R {product?.price}</div>
-            {/* <button className="homeCartButton"  onClick={() => onAdd(product)+ addToCart(product)}><FaCartArrowDown className='homeCartIcon' /><div>Add To Cart</div></button> */}
-            <button className="homeCartButton"  onClick={() => addToCart(product)}><FaCartArrowDown className='homeCartIcon' /><div>Add To Cart</div></button>
+            <button className="homeCartButton"  onClick={AddToCartHandler}><FaCartArrowDown className='homeCartIcon' /><div>Add To Cart</div></button>
+            {cartItems.map((item) => (
+                <div key={item._id}>
+                    remove
+                </div>
+            ))
+
+            }
          </div>
     )
 }

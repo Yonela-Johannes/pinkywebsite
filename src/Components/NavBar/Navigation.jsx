@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import { MdOutlineAdminPanelSettings } from "react-icons/md";
 import { MdOutlineDynamicFeed } from "react-icons/md";
 import { MdOutlineShoppingBag } from "react-icons/md";
@@ -10,69 +10,72 @@ import { Badge } from '@mui/material';
 import { GrBlog } from "react-icons/gr";
 import './style.css'
 import {NavLink, Link} from 'react-router-dom'
-
+import CartContext from '../../context/cart/CartContext';
 
 const Navigation = (props) => {
-    const {countCartItems, user, admin } = props;
-  return (
-         <nav className={user ? 'appBar' : 'appBar line'}>
-                <div className='grow'>
-                    <div className='button'>
-                            <ul className='navList'>
-                                <li className='navLink'>
-                                    <NavLink to='/'>
-                                        <div aria-label='Show cart items' color='inherit'>
-                                            <AiOutlineShop className='icon' />
-                                        </div>
-                                    </NavLink>
-                                </li>
-                                <li className='navLink'>
-                                    <NavLink to='/cart'>
-                                        <div aria-label='Show cart items' color='inherit'>
-                                            <Badge className='badge' badgeContent={countCartItems} />
-                                                <MdOutlineShoppingBag className='icon' />
-                                        </div>
-                                    </NavLink>
-                                </li>
-                                <li className='navLink'><NavLink to='/feeds'>
-                                        <div aria-label='Newsfeeds' color='inherit'>
-                                            <MdOutlineDynamicFeed className={user ? 'icon' : 'iconDisabled'}/>
-                                        </div>
-                                    </NavLink></li>
-                                <li className='navLink'>
-                                    <NavLink to='/blog'>
-                                         <div aria-label='Blog' color='inherit'>
-                                            <GrBlog className='icon' />
-                                        </div>                                   
-                                    </NavLink></li>
-                                    {
-                                        admin ? (
-                                            <li className='navLink'><NavLink to='/admin'>
-                                                    <div className='headerButtons' aria-label='Administration' color='inherit'>
-                                                    <MdOutlineAdminPanelSettings className='icon adminIcon' />
-                                                    </div>                                   
-                                                </NavLink></li>
+    const { cartItems } = useContext(CartContext);
 
-                                        ) : ''
-                                    }
-                                    {
-                                    !admin ? (
+    const {countCartItems, user, admin } = props;
+    return (
+        <nav className={user ? 'appBar' : 'appBar line'}>
+                    <div className='grow'>
+                        <div className='button'>
+                                <ul className='navList'>
                                     <li className='navLink'>
-                                        <NavLink to='/signin'>
-                                            <div aria-label='sign out' color='inherit'>
-                                                <BiLogIn className='icon logout' />
+                                        <NavLink to='/'>
+                                            <div aria-label='Show cart items' color='inherit'>
+                                                {cartItems.length > 0 && <div className='itemCount'><span style={{fontSize: '15px'}}>{cartItems.length}</span></div>}
+                                                <AiOutlineShop className='icon' />
+                                            </div>
+                                        </NavLink>
+                                    </li>
+                                    <li className='navLink'>
+                                        <NavLink to='/cart'>
+                                            <div aria-label='Show cart items'>
+                                                <Badge className='badge' badgeContent={countCartItems} />
+                                                    <MdOutlineShoppingBag className='icon' />
+                                            </div>
+                                        </NavLink>
+                                    </li>
+                                    <li className='navLink'><NavLink to='/feeds'>
+                                            <div aria-label='Newsfeeds' color='inherit'>
+                                                <MdOutlineDynamicFeed className={user ? 'icon' : 'iconDisabled'}/>
+                                            </div>
+                                        </NavLink></li>
+                                    <li className='navLink'>
+                                        <NavLink to='/blog'>
+                                            <div aria-label='Blog' color='inherit'>
+                                                <GrBlog className='icon' />
                                             </div>                                   
                                         </NavLink></li>
+                                        {
+                                            admin ? (
+                                                <li className='navLink'><NavLink to='/admin'>
+                                                        <div className='headerButtons' aria-label='Administration' color='inherit'>
+                                                        <MdOutlineAdminPanelSettings className='icon adminIcon' />
+                                                        </div>                                   
+                                                    </NavLink></li>
 
-                                    ) : 
-                                    admin && ("") 
-                                }
-                            </ul>
-                    </div>
+                                            ) : ''
+                                        }
+                                        {
+                                        !admin ? (
+                                        <li className='navLink'>
+                                            <NavLink to='/signin'>
+                                                <div aria-label='sign out' color='inherit'>
+                                                    <BiLogIn className='icon logout' />
+                                                </div>                                   
+                                            </NavLink></li>
 
-                </div>    
+                                        ) : 
+                                        admin && ("") 
+                                    }
+                                </ul>
+                        </div>
+
+                    </div>    
         </nav>
-  )
+    )
 };
 
 export default Navigation;
