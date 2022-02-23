@@ -3,8 +3,9 @@ import './styles.css'
 import SignIn from '../Components/Auth/SignIn';
 const Signin = () => {
   return (
-    <div className='top'>
-      <SignIn />
+    <div className='main'>
+      <h2 className='head'>Sign In</h2>
+        <SignIn />
     </div>
   )
 };

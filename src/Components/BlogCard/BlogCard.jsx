@@ -10,8 +10,8 @@ export default function BlogCard( { admin, user,post } ) {
             <img className='img' src={post?.image.asset.url} alt='' />
           </div>
           <div className="blogPostContent">
-            <div>
-            <p className='desc'>{post.description}</p>
+            <div className='blogPostDesc'>
+              <p className='desc'>{post.description}</p>
             </div>
             <div className="blogPostBody">
               <div>

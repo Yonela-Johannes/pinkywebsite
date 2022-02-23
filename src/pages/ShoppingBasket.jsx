@@ -9,7 +9,7 @@ const ShoppingBasket = (props) => {
     const taxPrice = itemsPrice * .18;
     const deliveryPrice = itemsPrice > 200 ? 0 : 20;
     const totalPrice = itemsPrice + taxPrice + deliveryPrice;
-
+    let itemName = []
     return (
         <aside className="cartContainer">
             <h2 className="cartTitle">Cart Items</h2>
@@ -17,17 +17,30 @@ const ShoppingBasket = (props) => {
             <div>
                 {cartItems.length === 0 && <div className="title-name">Cart is Empty, add Items to cart.</div>}
                 {cartItems.map((item) => (
-                    <div key={item.id} className='row'>
-                        <div>{item.name}</div>
+                    <div key={item._id} className='row'>
+                        <div className="cartItemName">{item.name.length <= 15 ? item.name : 
+                        item.name.slice(0,13) + '...'
+                    }
+                        
+                        </div>
                         <div className="buttons">
                             {/* <button className="remove" onClick={() => onRemove(item)}></button> */}
                             {/* <button className="add" onClick={() => onAdd(item)}>+</button> */}
                         </div>
-                        {item.quantity} x R {item.price.toFixed(2)}
+                        <div className="itemCount">
+                            {item.quantity} {item.quantity === 1 || item.quantity === 0 ? 'item' : 'items'} x R {item.price.toFixed(2)}
+                        </div>
+                        <div className='totalItemWrapper'>
+                            <div className="itemsTotal">Total:</div>
+                            <div style={{display: 'flex', alignItems: 'end'}}>
+                                <div className='itemsTotal rand'>R</div>
+                                <div style={{fontWeight: 'bold', fontSize: "13px"}}>{item.quantity * item.price}</div>
+                            </div>
+                        </div>
                     </div>
                 ))}
             </div>
-            {/* {cartItems.length !== 0 && (
+            {cartItems.length !== 0 && (
                 <>
                 <hr></hr>
                 <div className='col'>
@@ -43,11 +56,11 @@ const ShoppingBasket = (props) => {
                     <div>R {deliveryPrice.toFixed(2)}</div>
                 </div>
                 <div className='col'>
-                    <div><strong>Total</strong></div>
+                    <div><strong>Total Cost</strong></div>
                     <div><strong>R {totalPrice.toFixed(2)}</strong></div>
                 </div>
                 </>
-            )} */}
+            )}
         </aside>
     );
 };

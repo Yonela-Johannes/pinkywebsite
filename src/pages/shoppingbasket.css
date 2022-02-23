@@ -2,7 +2,7 @@
 /* Basket */
 
 .cartContainer {
-    width: 420px;
+    width: 600px;
     padding: 5px;
     margin: 5px;
     border-radius:  15px;
@@ -69,12 +69,31 @@ button.badge {
     font-weight: bold;
 }
 
+.cartItemName {
+    font-size: 13px;
+}
 .cartDesc {
     font-weight: bold;
     font-size: 11px;
 }
+.totalItemWrapper {
+    display: flex;
+    width: 100px;
+    align-items: center;
+    justify-content: space-between;
+}
+.itemsTotal {
+    font-size: 11px;
+    padding: 0;
+    margin: 0;
+    color: gray;
+}
 
-
+.rand {
+    font-size: 10px;
+    font-weight: bold;
+    padding: 0 5px;
+}
 
 /* ----Blog */
 
@@ -122,4 +141,10 @@ button.badge {
         justify-content: space-between;
         padding: 50px;
     }
+    .cartContainer {
+        width: 340px;
+        padding: 5px;
+        margin: 5px;
+    }
+        
   }
