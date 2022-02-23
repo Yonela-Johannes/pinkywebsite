@@ -9,7 +9,6 @@ export default function Post() {
     const path = location.pathname.split('/')[2]
     console.log(path)
     const post = posts.find((p) => p.id.toString() === path)
-  console.log(post)
 
   return (
     <>

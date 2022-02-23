@@ -17,14 +17,12 @@ import { productsQuery } from './utils/data';
 
 function App() {
   // const { products } = data;
-  const [load, setLoad ] = useState(false)
   const [products, setProducts ] = useState([])
   const [cartItems, setCartItems] = useState([]);
   // const query = userrQuery(userInfo?.googleId);
   const userInfo =  localStorage.getItem('user') !== 'undefined' ? JSON.parse(localStorage.getItem('user')) : localStorage.clear();
 
   const [ user, setUser ] = useState(null)
-  // const user = false
   const admin = false
   const onAdd = (product) => {
     const exist = cartItems.find(x => x._id === product._id)

@@ -7,8 +7,7 @@ import { Link } from 'react-router-dom';
 const Home = ( props ) => {
   const { products, onAdd, onRemove, cartItems } = props;
 
-    const message = "Be Pleasured By Pinky"
-  console.log(cartItems.length)
+  const message = "Be Pleasured By Pinky"
   return (
     <main className='main'>
           <h2 className='head'>Products</h2>

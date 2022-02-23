@@ -7,7 +7,6 @@ const Addproducts = () => {
     const [newProduct, setNewProduct ] = useState('');
     const [newPrice, setNewPrice ] = useState(100)
 
-    console.log(newProducts)
     const addToList = () => {
         newProduct.push(newProduct.name = {newProduct})
     }

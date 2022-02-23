@@ -1,5 +1,7 @@
 import ShoppingBasket from './ShoppingBasket';
 import Spinner from '../Components/Post/Feed.js/Spinner';
+import { Link } from 'react-router-dom';
+import { RiHome2Line } from "react-icons/ri";
 import './styles.css'
 const ShoppingCart = (props) => {
   const { onAdd, onRemove, cartItems } = props;
@@ -19,9 +21,9 @@ const ShoppingCart = (props) => {
                           <div className='item-name'>{item?.name}</div>
                           <div className='item-price'>R {item?.price}</div>
                         </div>
-                        <div className="buttons">
-                            <button className="remove cartButtons" onClick={() => onRemove(item)}>remove</button>
-                        </div>
+                  </div>
+                  <div className="buttons">
+                      <button className="remove cartButtons" onClick={() => onRemove(item)}>remove</button>
                   </div>
                 </div>
                 </>
@@ -36,10 +38,13 @@ const ShoppingCart = (props) => {
                 <p className='cartHead'>Cart Empty</p>
                 <Spinner message={message} />
                 <p className='cartDesc'>Add items to cart</p>
+                <Link to="/">
+                  <button className="homeShoppingCartButton" ><RiHome2Line className='homeCartIcon' /><div>Go to Shopping Cart</div></button>
+                </Link>   
               </div>
             }
           </>
-          <ShoppingBasket onAdd={onAdd} onRemove={onRemove} cartItems={cartItems} />     
+          <ShoppingBasket onAdd={onAdd} onRemove={onRemove} cartItems={cartItems} />  
       </div>
     </div>
   )

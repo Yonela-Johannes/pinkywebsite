@@ -35,6 +35,15 @@ export default {
             title: 'Image',
             type: 'image',
         },
-
+        {
+        name: 'rating',
+        title: 'Rating',
+        type: 'number',
+        },
+        {
+            name: 'reviews',
+            title: 'Reviews',
+            type: 'number',
+        }
     ]
 }

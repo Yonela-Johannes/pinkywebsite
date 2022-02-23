@@ -1,0 +1,16 @@
+.rating{
+    display: flex;
+    font-size: 12px;
+    padding: 5px;
+}
+
+.text {
+    color: gray;
+    font-size: 12px;
+}
+
+.ratingsIcon {
+    font-size: 14px;
+    padding: 2px;
+    color: rgb(66, 66, 66);
+}

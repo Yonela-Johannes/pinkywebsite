@@ -12,7 +12,6 @@ export default function Responses() {
     client.fetch(feedbackQuery)
     .then((data) => {
       setResponse(data);
-      console.log(data)
     })
   }, []);
 

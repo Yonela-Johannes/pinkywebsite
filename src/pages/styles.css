@@ -62,7 +62,6 @@
 .image {
     height: 180px;
     width: 180px;
-    border-radius: 15px;
     margin: 0 auto;
 }
 
@@ -184,14 +183,16 @@ button.badge {
 
 .item-name {
     color: rgb(179, 84, 84);
-    font-size: 22px;
+    font-size: 15px;
+    padding: 3px;
     font-weight: 600;
-    font-family: gautreaux, sans-serif;
 }
 .item-price {
-    color: rgb(92, 179, 84);
-    font-size: 18px;
+    padding: 10px;
+    font-size: 14px;
+    color: gray;
     font-weight: 600;
+    margin-left: 5px;
 }
 
 /* ----Blog */

@@ -48,6 +48,8 @@ export const productsQuery = `*[_type == "products"]{
     slug,
     name,
     price,
+    rating,
+    reviews,
     image {
         asset -> {
             url

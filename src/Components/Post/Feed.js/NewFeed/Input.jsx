@@ -23,7 +23,7 @@ export default function Input({user, admin }) {
     setInput(input + emoji);
   };
   
-console.log(input)
+
   const addImageTopPost = () => {
 
   }
