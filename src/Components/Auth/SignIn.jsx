@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import Spinner from '../Post/Feed.js/Spinner';
 import Validation from './validation';
 import {NavLink} from 'react-router-dom'
 import { FcGoogle } from "react-icons/fc";
@@ -32,18 +33,18 @@ export default function SignIn() {
             navigate('/', { replace: true })
         })
     }
-
+    const message = "Be Pleasured By Pinky"
   return (
-    <div className='form-container'>
+      <div className='form-container'>
+        <img src={logo} className='logo' alt="" />
+        <div className='spinnerLoginContainer'>
+          <Spinner message={message}/>
+        </div>
+        <div>
         <div className='app-wrapper'>
-            <div>
-                <img src={logo} className='logo' alt="" />
-            </div>
-            <div>
-                <p className='loginTitle'>Sign In</p>
             </div>
             <div className='loginWrapper'>
-                <GoogleLogin
+                <GoogleLogin className='googleWrapper'
                     // clientId={process.env.REACT_APP_GOOGLE_API_TOKEN}
                     clientId= '1012340695541-l7j2gt5f7pcjsq2kf7ar6oigmoqmiqum.apps.googleusercontent.com'
                     render={(renderProps) => (

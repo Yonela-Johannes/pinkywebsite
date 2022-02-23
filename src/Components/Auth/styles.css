@@ -1,8 +1,11 @@
   .form-container {
     width: 100%;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
+    background-color: aliceblue;
+    padding: 10px 0 ;
 }
 
 .top {
@@ -10,13 +13,15 @@
 }
 
 .app-wrapper {
-    background-color: white;
-    border: .3px solid rgb(100, 100, 100);
-      min-width: 370px;
-      box-sizing: border-box;
-      border-radius: 5px;
-      margin: 10px 0;
+    display: flex;
+    flex-direction: row;
+    /* background-color: rgb(231, 231, 231); */
+    padding: 10px;
+    box-sizing: border-box;
+    border-radius: 5px;
+    align-items: center;
   }
+
   
   .title {
     color:  grey;
@@ -128,6 +133,8 @@
     padding: 0 20px;
     justify-content: center;
     cursor: pointer;
+    border-radius: 15px;
+    margin: 0 10px;
   }
   
   .facebook {
@@ -144,4 +151,19 @@
   }
   .google:hover {
     background:linear-gradient(-120deg, #5395ff, #34a853, #ffdb70, #fd5849);
+  }
+
+  .logo{
+    width: 54px;
+    height: 60px;
+    background-color: pink;
+    border-radius: 50%;
+    padding: 5px;
+    border: .3px solid gray;
+  }
+
+  @media only screen and (max-width: 1000px){
+    .form-container {
+      padding-top: 50px;
+  }
   }

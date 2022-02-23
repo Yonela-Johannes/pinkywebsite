@@ -69,12 +69,12 @@
 /* Basket */
 
 .aside {
-    width: 320px;
-    background-color: rgb(228, 226, 226);
+    width: 500px;
+    background-color: rgb(241, 241, 241);
     padding: 5px;
     margin: 5px;
     border-radius:  15px;
-    border: .5px solid rgba(253, 156, 172, 0.712);
+    border: .5px solid rgba(216, 216, 216, 0.712);
 }
 
 .col {
@@ -88,7 +88,7 @@
     justify-content: space-between;
 }
 hr{
-    background-color: black;
+    background-color: rgb(223, 223, 223);
     border-radius: 20px;
     height: .5px;
     border: none;

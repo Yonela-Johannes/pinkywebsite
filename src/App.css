@@ -3,7 +3,12 @@
     flex-direction: column;
     height: 100vh;
 }
+.homepage {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 
+}
 main {
     flex: 1;
 }
@@ -65,7 +70,15 @@ small{
     img.siteLogo {
         width: 50px;
     }
+    .homepage {
+        flex-direction: column;
+        flex: 1;
+    }
   }
+
+
+
+
 .footerLinks {
     display: flex;
     flex-direction: column;

@@ -9,7 +9,6 @@ import Home from './pages/Home';
 import Footer from './Components/Footer/Footer';
 import Signin  from './pages/Signin';
 import './app.css'
-import Spinner from './Components/Post/Feed.js/Spinner';
 import Blog from './pages/Blog';
 import Post from './Components/BlogCard/Post';
 import { client } from './client';
@@ -18,6 +17,7 @@ import { productsQuery } from './utils/data';
 
 function App() {
   // const { products } = data;
+  const [load, setLoad ] = useState(false)
   const [products, setProducts ] = useState([])
   const [cartItems, setCartItems] = useState([]);
   // const query = userrQuery(userInfo?.googleId);
@@ -51,26 +51,20 @@ function App() {
   // Fetch user from database
   // Fetch products from database
 
-  // useEffect(() => {
-  //   client.fetch(productsQuery)
-  //   .then((data) => {
-  //     setProducts(data)
-  //   })
-  //   const query = userQuery(userInfo?.googleId);
-  //   client.fetch(query)
-  //   .then((data) => {
-  //     setUser(data[0])
-  //   })
-  // },[]);
+  useEffect(() => {
+    client.fetch(productsQuery)
+    .then((data) => {
+      setProducts(data)
+    })
+    const query = userQuery(userInfo?.googleId);
+    client.fetch(query)
+    .then((data) => {
+      setUser(data[0])
+    })
+  },[userInfo]);
 
-  // useEffect(() => {
-  //   scrollRef.current.scrollTo(0, 0)
-  // }, []);
-  const message = 'Be Pleasured By Pinky'
   return (
     <div className="App">
-      {!cartItems.length === 0 ? (
-        <>
           {admin ? (
                 <div className='main-app'>
                 <Navbar countCartItems={cartItems.length} user={user} admin={admin}/>
@@ -82,14 +76,12 @@ function App() {
                   <Route path='/Admin' element={<Admin />} />
                   <Route path='/blog' element={<Blog user={user} admin={admin}  />} />
                   <Route path='/signin' element={user ? <Navigate to="/" /> : <Signin />} />
-                  <Route path='/signup' element={<SignUp />} />
                   {/* Post routing */}
                   <Route path='/post/:slug' element={user ? <Post /> : <Signin />} />
                 </Routes>
               </main>
               <Footer />
           </div>
-          
             ) : (
               <div className='main-app'>
               <Navbar countCartItems={cartItems.length} user={user}/>
@@ -108,19 +100,7 @@ function App() {
             </main>
             <Footer />
         </div>
-          )
-          }
-        
-        </>
-      ) : ( 
-        <div className='main-app'>
-        <Navbar countCartItems={cartItems.length} user={user} admin={admin}/>
-        <div className='main'>
-          <Spinner message={message}/>
-        </div>
-      
-      </div>
-      )}
+        )}
     </div>
   );
 }

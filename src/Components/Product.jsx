@@ -1,5 +1,4 @@
 import React from 'react';
-import { urlFor } from '../client';
 import './styles.css'
 
 export default function Product( props ) {
