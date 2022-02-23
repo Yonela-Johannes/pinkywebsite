@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import './styles.css'
 import Rating from './Rating';
+import CartContext from '../context/cart/CartContext';
 import { FaCartArrowDown } from "react-icons/fa";
 
 export default function Product( props ) {
+    const { addToCart } = useContext(CartContext)
     const { product, onAdd} = props;
     return(
         <div className='wrapper'>
@@ -15,7 +17,8 @@ export default function Product( props ) {
             </div>
             <Rating value={product?.rating} text={`${product?.reviews} reviews`} />
             <div className="product-price">R {product?.price}</div>
-            <button className="homeCartButton"  onClick={() => onAdd(product)}><FaCartArrowDown className='homeCartIcon' /><div>Add To Cart</div></button>
+            {/* <button className="homeCartButton"  onClick={() => onAdd(product)+ addToCart(product)}><FaCartArrowDown className='homeCartIcon' /><div>Add To Cart</div></button> */}
+            <button className="homeCartButton"  onClick={() => addToCart(product)}><FaCartArrowDown className='homeCartIcon' /><div>Add To Cart</div></button>
          </div>
     )
 }
