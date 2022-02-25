@@ -1,17 +1,9 @@
 import './shoppingbasket.css'
 import { MdOutlineDeleteForever } from "react-icons/md";
 import { IoMdAddCircleOutline } from "react-icons/io";
-import CartContext from '../context/cart/CartContext';
-import React, { useContext } from 'react';
 
 const ShoppingBasket = (props) => {
     const { cartItems, onAdd, onRemove } = props;
-    const { addToCart } = useContext(CartContext)
-
-    // const AddToCartHandler = () => {
-    //     addToCart(product)
-    //     onAdd(product)
-    // }
     
     const itemsPrice = cartItems.reduce((acc, count) => acc + count.price * count.quantity, 0);
     const taxPrice = itemsPrice * .18;
@@ -30,10 +22,6 @@ const ShoppingBasket = (props) => {
                         item.name.slice(0,13) + '...'
                     }
                         
-                        </div>
-                        <div className="buttons">
-                            <div className="shoppingButton remove" onClick={() => onRemove(item)}><MdOutlineDeleteForever className='cartIcon' /></div>
-                            <div className="shoppingButton add" onClick={() => onAdd(item)}><IoMdAddCircleOutline className='cartIcon' /></div>
                         </div>
                             <div className="itemCount">
                                 {item.quantity} {item.quantity === 1 || item.quantity === 0 ? 'item' : 'items'} x R {item.price.toFixed(2)}

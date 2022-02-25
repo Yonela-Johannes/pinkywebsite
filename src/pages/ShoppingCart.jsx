@@ -1,20 +1,13 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import ShoppingBasket from './ShoppingBasket';
 import Spinner from '../Components/Post/Feed.js/Spinner';
 import { Link } from 'react-router-dom';
-import CartContext from '../context/cart/CartContext';
 import { RiHome2Line } from "react-icons/ri";
 import './styles.css'
 
 const ShoppingCart = (props) => {
-  const { addToCart } = useContext(CartContext)
   const { onAdd, onRemove, cartItems } = props;
   const message = 'Be  Pleasured by Pinky'
-
-//   const AddToCartHandler = () => {
-//     addToCart(product)
-//     onAdd(product)
-// }
 
   return (
     <div className='mainCartContainer'>
@@ -54,7 +47,9 @@ const ShoppingCart = (props) => {
               </div>
             }
           </>
-          <ShoppingBasket onAdd={onAdd} onRemove={onRemove} cartItems={cartItems} />  
+          <ShoppingBasket 
+            onAdd={onAdd}
+            cartItems={cartItems} />  
       </div>
     </div>
   )

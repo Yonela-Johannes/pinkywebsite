@@ -17,13 +17,18 @@ import { productsQuery } from './utils/data';
 
 function App() {
   // const { products } = data;
-  const [products, setProducts ] = useState([])
-  const [cartItems, setCartItems] = useState([]);
   // const query = userrQuery(userInfo?.googleId);
-  const userInfo =  localStorage.getItem('user') !== 'undefined' ? JSON.parse(localStorage.getItem('user')) : localStorage.clear();
-
+  const userInfo =  localStorage.getItem('user') !== 'undefined' | 'null' ? JSON.parse(localStorage.getItem('user')) : localStorage.clear();
+  const itemsInfo = localStorage.getItem('cartItems') !== 'undefined' | 'null' ? JSON.parse(localStorage.getItem('cartItems')) : localStorage.clear();
+  const emptyItem = []
+  localStorage.setItem('emptyItem', JSON.stringify(emptyItem))
+  const storedEmptyItem = JSON.parse(localStorage.getItem('emptyItem'))
+  const [products, setProducts ] = useState([])
+  const [cartItems, setCartItems] = useState(itemsInfo ? itemsInfo : storedEmptyItem);
   const [ user, setUser ] = useState(null)
   const admin = false
+
+  
   const onAdd = (product) => {
     const exist = cartItems.find(x => x._id === product._id)
     if(exist){
@@ -33,6 +38,7 @@ function App() {
     } else {
       setCartItems([...cartItems, {...product, quantity: 1}])
     }
+    localStorage.setItem('cartItems', JSON.stringify(cartItems));
   };
 
   const onRemove = (product) => {
@@ -44,6 +50,7 @@ function App() {
       x._id === product._id ? {...exist, quantity: exist.quantity - 1} : x
     ));  
     }
+    localStorage.setItem('cartItems', JSON.stringify(cartItems))
   }
 
   // Fetch user from database
