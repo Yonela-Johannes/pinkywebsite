@@ -16,7 +16,6 @@ const ShoppingCart = (props) => {
           <div className='items'>
             {
               cartItems.map((item) => (
-                <>
                 <div key={item._id} className='mainContainer'>
                   <div className='image-container'>
                     <img src={item?.image.asset.url} className="image" alt="cart" />
@@ -29,7 +28,6 @@ const ShoppingCart = (props) => {
                       <button className="remove cartButtons" onClick={() => onRemove(item)}>remove</button>
                   </div>
                 </div>
-                </>
               ))
             }
             <div>

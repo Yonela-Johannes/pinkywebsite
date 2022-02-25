@@ -3,7 +3,7 @@ import { MdOutlineDeleteForever } from "react-icons/md";
 import { IoMdAddCircleOutline } from "react-icons/io";
 
 const ShoppingBasket = (props) => {
-    const { cartItems, onAdd, onRemove } = props;
+    const { cartItems } = props;
     
     const itemsPrice = cartItems.reduce((acc, count) => acc + count.price * count.quantity, 0);
     const taxPrice = itemsPrice * .18;

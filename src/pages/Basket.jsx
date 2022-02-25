@@ -17,7 +17,7 @@ const Basket = (props) => {
             <div>
                 {cartItems.length === 0 && <div className="title-name">Cart is Empty, add Items to cart.</div>}
                 {cartItems.map((item) => (
-                    <div key={item.id} className='row'>
+                    <div key={item._id} className='row'>
                         <div>{item.name}</div>
                         {item.quantity} x R {item.price.toFixed(2)}
                     </div>

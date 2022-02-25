@@ -9,6 +9,8 @@ import Home from './pages/Home';
 import Footer from './Components/Footer/Footer';
 import Signin  from './pages/Signin';
 import './app.css'
+import homeLogo from './img/logopinky.png'
+import Spinner from './Components/Post/Feed.js/Spinner';
 import Blog from './pages/Blog';
 import Post from './Components/BlogCard/Post';
 import { client } from './client';
@@ -16,8 +18,7 @@ import { userQuery } from './utils/data';
 import { productsQuery } from './utils/data';
 
 function App() {
-  // const { products } = data;
-  // const query = userrQuery(userInfo?.googleId);
+
   const userInfo =  localStorage.getItem('user') !== 'undefined' | 'null' ? JSON.parse(localStorage.getItem('user')) : localStorage.clear();
   const itemsInfo = localStorage.getItem('cartItems') !== 'undefined' | 'null' ? JSON.parse(localStorage.getItem('cartItems')) : localStorage.clear();
   const emptyItem = []
@@ -27,7 +28,7 @@ function App() {
   const [cartItems, setCartItems] = useState(itemsInfo ? itemsInfo : storedEmptyItem);
   const [ user, setUser ] = useState(null)
   const admin = false
-
+  const message = 'Be Pleasured By Pinky'
   
   const onAdd = (product) => {
     const exist = cartItems.find(x => x._id === product._id)
@@ -66,7 +67,19 @@ function App() {
     .then((data) => {
       setUser(data[0])
     })
-  },[userInfo]);
+
+  }, []);
+  
+
+
+  // const homePageLoader = () => {
+  //        <div className="loadingSpinner">
+  //       <div className='loadingSpinnerWrapper'>
+  //         <img src={homeLogo} className='homeLogo' alt='logo' />
+  //         <Spinner message={message} />
+  //       </div>
+  //     </div> 
+  // }
 
   return (
     <div className="App">

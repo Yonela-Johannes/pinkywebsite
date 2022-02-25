@@ -1,4 +1,3 @@
-import React, {useContext} from 'react';
 import { MdOutlineAdminPanelSettings } from "react-icons/md";
 import { MdOutlineDynamicFeed } from "react-icons/md";
 import { MdOutlineShoppingBag } from "react-icons/md";
@@ -10,10 +9,8 @@ import { Badge } from '@mui/material';
 import { GrBlog } from "react-icons/gr";
 import './style.css'
 import {NavLink, Link} from 'react-router-dom'
-import CartContext from '../../context/cart/CartContext';
 
 const Navigation = (props) => {
-    const { cartItems } = useContext(CartContext);
 
     const {countCartItems, user, admin } = props;
     return (
@@ -24,7 +21,6 @@ const Navigation = (props) => {
                                     <li className='navLink'>
                                         <NavLink to='/'>
                                             <div aria-label='Show cart items' color='inherit'>
-                                                {cartItems.length > 0 && <div className='itemCount'><span style={{fontSize: '15px'}}>{cartItems.length}</span></div>}
                                                 <AiOutlineShop className='icon' />
                                             </div>
                                         </NavLink>
