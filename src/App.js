@@ -113,7 +113,7 @@ function App() {
                 <Route path='/signin' element={user ? <Navigate to="/" /> : <Signin />} />
                 <Route path='/signup' element={<SignUp />} />
                 {/* Post routing */}
-                <Route path='/post/:id' element={user ? <Post /> : <Signin />} />
+                <Route path='/:_id' element={user ? <Post /> : <Signin />} />
               </Routes>
             </main>
             <Footer />

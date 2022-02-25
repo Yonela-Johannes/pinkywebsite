@@ -2,10 +2,11 @@ import './card.css'
 import { client } from '../../client';
 import { Link } from 'react-router-dom'
 import logo from "../../img/logopinky.png"
-export default function BlogCard( { admin, user,post } ) {
+export default function BlogCard( { admin, user, post } ) {
+  console.log(post)
   return (
       <div className='card'>
-        <Link to={`/post/${post.slug}`}> 
+        <Link to={'/post/'+ post._id.current}> 
           <div className="blogPostHead">
             <img className='img' src={post?.image.asset.url} alt='' />
           </div>

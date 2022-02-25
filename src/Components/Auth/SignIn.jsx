@@ -36,9 +36,10 @@ export default function SignIn() {
     const message = "Be Pleasured By Pinky"
   return (
       <div className='form-container'>
-        <img src={logo} className='logo' alt="" />
+         <img src={logo} className='logo' alt="" />
         <div className='spinnerLoginContainer'>
           <Spinner message={message}/>
+
         </div>
         <div>
         <div className='app-wrapper'>
