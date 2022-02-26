@@ -1,6 +1,6 @@
 import Basket from './Basket';
 import Spinner from '../Components/Post/Feed.js/Spinner';
-import Product from '../Components/Product';
+import Products from '../Components/Products';
 import './styles.css'
 import { BsCartCheck } from "react-icons/bs";
 import { Link } from 'react-router-dom';
@@ -15,7 +15,7 @@ const Home = ( props ) => {
           <div className="products">
               {
                 products.map(product => (
-                  <Product onAdd={onAdd} onRemove={onRemove} key={product._id} product={product} cartItems={cartItems} />
+                  <Products onAdd={onAdd} onRemove={onRemove} key={product._id} product={product} cartItems={cartItems} />
                   ))
                 }
               </div>

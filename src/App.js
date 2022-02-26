@@ -6,6 +6,7 @@ import ShoppingCart from './pages/ShoppingCart';
 import Admin from './Administration/pages/Admin';
 import Feeds from './pages/Feeds';
 import Home from './pages/Home';
+import Product from './Components/Product';
 import Footer from './Components/Footer/Footer';
 import Signin  from './pages/Signin';
 import './app.css'
@@ -114,6 +115,7 @@ function App() {
                 <Route path='/signup' element={<SignUp />} />
                 {/* Post routing */}
                 <Route path='/:_id' element={user ? <Post /> : <Signin />} />
+                <Route path='products/<slug/>' element={user ? <Product products={products} /> : <Signin />} />
               </Routes>
             </main>
             <Footer />
