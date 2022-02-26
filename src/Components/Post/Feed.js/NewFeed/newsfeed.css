@@ -1,95 +1,12 @@
-.userDetails {
-    display: flex;
-}
-
-.adminImage {
-    width: 35px;
-    height: 35px;
-    border-radius: 50px;
-    border: 3px solid pink;
-    cursor: pointer;
-    margin: 0 10px 0 20px;
-}
-p.userName {
-    padding: 0;
-    font-size: 10px;
-    font-weight: bold;
-    color: gray;
-}
-.inputContainer{
-    border-bottom: 1px solid darkgrey;
-    display: flex;
-    padding: 10px;
-    overflow-y: scroll;
-    overflow: hidden;
-    border-radius: 15px;
-}
-
-.postButton:disabled{
-    cursor: default;
+.postButton{
     background-color: white;
     color: gray;
+    border-radius: 25px;
+    padding: 3px 3px;
+    font-size: 12px;
     border-radius: 1px solid gray;
 }
 
-.emojisWrapper {
-    display: flex;
-    width: 90%;
-    flex-direction: column;
-}
-.IconsEmojiContainer {
-    display: flex;
-    flex: 1;
-    align-items: center;
-    justify-content: start;
-    flex-wrap: wrap;
-}
-.textInput {
-    display: flex;
-    flex-wrap: wrap;
-    width:  90%;
-    border-radius: 15px;
-    padding: 5px 10px;
-    font-size: 14px;
-}
-
-.iconColor {
-    color:grey;
-    font-size: 20px;
-    margin-right: 15px;
-    border: 1px solid pink;
-    border-radius: 50px;
-
-}
-
-.iconColor:hover {
-    color: pink;
-    background-color: grey;
-    border-radius: 50px;
-    border: 1px solid rgb(121, 193, 252);
-    border: 1px solid rgb(121, 193, 252);
-}
-
-@media only screen and (max-width: 1000px){
-    .inputContainer{
-        border-bottom: 1px solid darkgrey;
-        display: flex;
-        flex-direction: column;
-    }
-
-    .adminImage {
-        margin: 10px;
-    }
-
-    .textInput {
-        display: flex;
-        flex-wrap: wrap;
-        width: 95%;
-        border-radius: 15px;
-        padding: 20px 10px;
-        font-size: 14px;
-    }
-    .emojiPicker {
-        margin-top: 400px;
-    }
+.postButton:hover {
+    background-color: pink;
 }
