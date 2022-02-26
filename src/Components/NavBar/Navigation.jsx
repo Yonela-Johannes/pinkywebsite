@@ -9,6 +9,7 @@ import { Badge } from '@mui/material';
 import { GrBlog } from "react-icons/gr";
 import './style.css'
 import {NavLink, Link} from 'react-router-dom'
+import { useGoogleLogout } from "react-google-login";
 
 const Navigation = (props) => {
 
@@ -54,18 +55,14 @@ const Navigation = (props) => {
 
                                             ) : ''
                                         }
-                                        {
-                                        !admin ? (
                                         <li className='navLink'>
                                             <NavLink to='/signin'>
                                                 <div aria-label='sign out' color='inherit'>
                                                     <BiLogIn className='icon logout' />
                                                 </div>                                   
                                             </NavLink></li>
-
-                                        ) : 
-                                        admin && ("") 
-                                    }
+                                            <useGoogleLogout buttonText='Logout' onLogoutSuccess='logout'>logout
+                                        </useGoogleLogout>
                                 </ul>
                         </div>
 

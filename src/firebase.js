@@ -1,19 +1,20 @@
-import firebase from "firebase";
+import { initializeApp, getApp, getApps } from "firebase/app";
+import { getFirestore } from "firebase/firestore";
+import { getStorage } from "firebase/storage";
 
 const firebaseConfig = {
-    apiKey: "AIzaSyAFH9zCY240OZH51y7-Rhu5DAlCY1kbQeI",
-    authDomain: "facebook-clone-3d18e.firebaseapp.com",
-    projectId: "facebook-clone-3d18e",
-    storageBucket: "facebook-clone-3d18e.appspot.com",
-    messagingSenderId: "1024987377305",
-    appId: "1:1024987377305:web:a76e9c6d98f14234401208",
-    measurementId: "G-TPFVM8F8K1"
-  };
+  apiKey: "AIzaSyCn5xBGSOpNCLykJhdlbBJAR0b007fZpk4",
+  authDomain: "bepleasuredbypinky.firebaseapp.com",
+  projectId: "bepleasuredbypinky",
+  storageBucket: "bepleasuredbypinky.appspot.com",
+  messagingSenderId: "21402435076",
+  appId: "1:21402435076:web:a3da593fdb36b822837f51"
+};
 
-const firebaseApp = firebase.initializeApp(firebaseConfig);
-const db = firebaseApp.firestore();
-const auth = firebase.auth();
-const provider = new firebase.auth.GoogleAuthProvider();
+// Initialize Firebase
+const app = !getApps().length ? initializeApp(firebaseConfig) : getApp();
+const db = getFirestore();
+const storage = getStorage();
 
-export { auth, provider };
-export default db;
+export default app;
+export { db, storage };
