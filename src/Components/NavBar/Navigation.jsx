@@ -61,8 +61,6 @@ const Navigation = (props) => {
                                                     <BiLogIn className='icon logout' />
                                                 </div>                                   
                                             </NavLink></li>
-                                            <useGoogleLogout buttonText='Logout' onLogoutSuccess='logout'>logout
-                                        </useGoogleLogout>
                                 </ul>
                         </div>
 
