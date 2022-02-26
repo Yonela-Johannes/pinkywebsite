@@ -17,6 +17,7 @@ import Post from './Components/BlogCard/Post';
 import { client } from './client';
 import { userQuery } from './utils/data';
 import { productsQuery } from './utils/data';
+import "./styles/global.css"
 
 function App() {
 
