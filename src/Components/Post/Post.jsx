@@ -3,46 +3,65 @@ import {
     deleteDoc,
     doc,
     onSnapshot,
-    orderBy,
-    query,
     setDoc,
   } from "@firebase/firestore";
-//   import { useSession } from "next-auth/react";
-//   import { useRouter } from "next/router";
   import { useEffect, useState } from "react";
   import {
-    ChartBarIcon,
     ChatIcon,
-    DotsHorizontalIcon,
     HeartIcon,
     ShareIcon,
     SwitchHorizontalIcon,
     TrashIcon,
   } from "@heroicons/react/outline";
-
+  import { useRoutes } from "react-router-dom";
   import {
     HeartIcon as HeartIconFilled,
     ChatIcon as ChatIconFilled,
   } from "@heroicons/react/solid";
-  import Moment from "moment";
-//   import { useRecoilState } from "recoil";
-//   import { modalState, postIdState } from "../atoms/modalAtom";
+  import Moment from "react-moment";
+  import { useRecoilState } from "recoil";
+  import { modalState, postIdState } from "../../atoms/modalAtom";
   import { db } from "../../firebase";
 import './Post.css';
 // import { Avatar } from "@material-ui/core";
 
 function Post({id, profilePic, username, timestamp, message, post, postPage, user }) {
     // const { data: session } = useSession();
-    // const [isOpen, setIsOpen] = useRecoilState(modalState);
-    // const [postId, setPostId] = useRecoilState(postIdState);
+    const [isOpen, setIsOpen] = useRecoilState(modalState);
+    const [postId, setPostId] = useRecoilState(postIdState);
     const [comments, setComments] = useState([]);
-    // const [likes, setLikes] = useState([]);
-    // const [liked, setLiked] = useState(false);
-    // const router = useRouter()
+    const [likes, setLikes] = useState([]);
+    const [liked, setLiked] = useState(false);
+    const router = useRoutes
 
-    console.log(post)
+    useEffect(
+        () =>
+          onSnapshot(collection(db, "posts", id, "likes"), (snapshot) =>
+            setLikes(snapshot.docs)
+          ),
+        [db, id]
+      );
+    
+      useEffect(
+        () =>
+          setLiked(
+            likes.findIndex((like) => like.id === user?.uid) !== -1
+          ),
+        [likes]
+      );
+
+    const likePost = async () => {
+
+        if (liked) {
+          await deleteDoc(doc(db, "posts", id, "likes", user.uid));
+        } else {
+          await setDoc(doc(db, "posts", id, "likes", user.uid), {
+            username: user.userName,
+          });
+        }
+      };
     return (
-        <div className={`p-3 flex cursor pointer border-b border-gray`}>
+        <div className={`p-3 flex cursor pointer border-b border-gray`} >
             {!postPage && (
                 <img src={user?.image} alt=' profile avatar ' className='h-11 w-11 rounded-full mr-4'/>
             )}
@@ -57,8 +76,7 @@ function Post({id, profilePic, username, timestamp, message, post, postPage, use
                             <span className={`text-sm sm:text-[12px] ${!postPage && "ml-1.5"}`}>@bepleasuredbypinky</span>
                         </div>
                         <span className="hover:underline text-sm sm:text-[13px]">
-                            {/* <Moment fromNow>{post?.timestamp.toDate()}</Moment> */}
-                            {/* <img src={image} alt="" /> */}
+                            <Moment fromNow>{post?.timestamp.toDate()}</Moment>
                         </span>
                         {!postPage && (
                             <p className="text-[#272727] text-[14px] sm:text-base mt-0.5">{post?.text}</p>
@@ -73,9 +91,9 @@ function Post({id, profilePic, username, timestamp, message, post, postPage, use
                 <div
             className="flex items-center space-x-1 group"
             onClick={(e) => {
-            //   e.stopPropagation();
-            //   setPostId(id);
-            //   setIsOpen(true);
+              e.stopPropagation();
+              setPostId(id);
+              setIsOpen(true);
             }}
           >
             <div className="icon group-hover:bg-[#1d9bf0] group-hover:bg-opacity-10">
@@ -88,13 +106,13 @@ function Post({id, profilePic, username, timestamp, message, post, postPage, use
             )}
           </div>
 
-          {/* {session.user.uid === post?.id ? (
+          {/* {user.uid === post?.id ? (
             <div
               className="flex items-center space-x-1 group"
               onClick={(e) => {
                 e.stopPropagation();
                 deleteDoc(doc(db, "posts", id));
-                // router.push("/");
+                router.push("/feeds");
               }}
             >
               <div className="icon group-hover:bg-red-600/10">
@@ -113,7 +131,7 @@ function Post({id, profilePic, username, timestamp, message, post, postPage, use
             className="flex items-center space-x-1 group"
             onClick={(e) => {
               e.stopPropagation();
-            //   likePost();
+              likePost();
             }}
           >
             <div className="icon group-hover:bg-pink-600/10">
@@ -134,9 +152,9 @@ function Post({id, profilePic, username, timestamp, message, post, postPage, use
             )}
           </div> */}
 
-          <div className="icon group">
+          {/* <div className="icon group">
             <ShareIcon className="h-5 group-hover:text-[#1d9bf0]" />
-          </div>
+          </div> */}
         </div>       
                 </div>
             </div>
