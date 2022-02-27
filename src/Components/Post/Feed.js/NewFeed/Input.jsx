@@ -35,8 +35,9 @@ export default function Input({user, admin }) {
   };
 
   const message = 'loading updates!'
+  
   const sendPost = async () => {
-    if (loading) return <Spinner message={message}/>;
+    loading && <Spinner message={message}/>;
     setLoading(true);
 
     const docRef = await addDoc(collection(db, "posts"), {
