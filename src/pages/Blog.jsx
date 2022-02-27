@@ -4,6 +4,7 @@ import BlogCard from '../Components/BlogCard/BlogCard';
 import { client } from '../client';
 import Spinner from '../Components/Post/Feed.js/Spinner';
 import { post } from '../utils/data';
+import BlogInput from '../Administration/Components/AdminInput/BlogInput';
 
 export default function Blog({user, admin}) {
     const [load, setLoad ] = useState(false)
@@ -22,6 +23,7 @@ export default function Blog({user, admin}) {
     return (
         <div className='main'>
           <h2 className='head'>Explore</h2>
+            <BlogInput />
             {blogPost && !load ? (
                 <div className='blogHome'>
                     {blogPost.map(post => (
