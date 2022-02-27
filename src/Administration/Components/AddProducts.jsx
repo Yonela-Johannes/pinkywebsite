@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import data from '../../pages/data';
 import ProductList from './ProductList';
+
 const Addproducts = () => {
     const product = data.products
     const [newProducts, setNewProducts ] = useState(product);
@@ -11,20 +12,20 @@ const Addproducts = () => {
         newProduct.push(newProduct.name = {newProduct})
     }
     return (
-        <div className='productsContainer'>
-            <div>
-                <h3 className='productHeader' >New Product</h3>
-                <div className='productInput'>
-                    <div className="newProductWrapper">
-                        <p className="productLabel">Product name:</p>
-                        <input className='productInput' type="text" name='name' placeholder='product name' value={newProduct} onChange={e => setNewProduct(e.target.value)} />
-                    </div>
-                    <div className="newProductWrapper">
-                        <p className="productLabel">Product price:</p>
-                    <input className='productInput'  type="number" min={10} max={1500} step={10} value={newPrice} onChange={e => setNewPrice(e.target.value)} />
-                    </div>
+        <div className='border-b border-gray-600 max-w-2xl flex items-center justify-center text-center'>
+        <h2 className={`head `}>Add Products</h2>
+        {/* <div className='productsContainer'>
+            <h3 className='productHeader' >Add New Product</h3>
+            <div className='productInput'>
+                <div className="newProductWrapper">
+                    <p className="productLabel">Product name:</p>
+                    <input className='productInput' type="text" name='name' placeholder='product name' value={newProduct} onChange={e => setNewProduct(e.target.value)} />
                 </div>
-                <button onClick={addToList} className='addProduct'>Add to list</button>
+                <div className="newProductWrapper">
+                    <p className="productLabel">Product price:</p>
+                <input className='productInput'  type="number" min={10} max={1500} step={10} value={newPrice} onChange={e => setNewPrice(e.target.value)} />
+                </div>
+            <button onClick={addToList} className='addProduct'>Add to list</button>
             </div>
             <p>{newProduct}</p>
             <div>
@@ -37,6 +38,7 @@ const Addproducts = () => {
                 <p>{newProduct}</p>
                 <p>{newPrice}</p>
             </div>
+        </div> */}
         </div>
     );
 }

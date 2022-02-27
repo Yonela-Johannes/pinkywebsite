@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom'
 import './style.css'
 
 const Navbar = ( props ) => {
-  const { countCartItems, user } = props;
+  const { countCartItems, user, admin } = props;
   const LogoImage = {
     width: 40,
     height: 50,
@@ -40,7 +40,7 @@ const Navbar = ( props ) => {
                   </Link>
                 )}
 
-              <Navigation countCartItems={countCartItems} user={user} />
+              <Navigation countCartItems={countCartItems} admin={admin} user={user} />
               </div>
         </nav>
   )

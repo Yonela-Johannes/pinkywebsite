@@ -29,7 +29,7 @@ function App() {
   const [products, setProducts ] = useState([])
   const [cartItems, setCartItems] = useState(itemsInfo ? itemsInfo : storedEmptyItem);
   const [ user, setUser ] = useState(null)
-  const admin = false
+  const admin = true;
   const message = 'Be Pleasured By Pinky'
   
   const onAdd = (product) => {
