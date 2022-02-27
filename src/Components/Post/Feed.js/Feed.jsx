@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import { onSnapshot, collection, query, orderBy } from "@firebase/firestore";
 import { db } from "../../../firebase";
 import Post from '../Post';
-import { RiKakaoTalkLine} from "react-icons/ri";
 import Input from '../Feed.js/NewFeed/Input'
 
 function Feed( {user, admin} ) {
