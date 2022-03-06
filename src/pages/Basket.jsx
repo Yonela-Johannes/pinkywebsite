@@ -4,7 +4,7 @@ import './styles.css'
 
 const Basket = (props) => {
     const { cartItems, onAdd, onRemove } = props;
-
+    console.log(cartItems)
     const itemsPrice = cartItems.reduce((acc, count) => acc + count.price * count.quantity, 0);
     const taxPrice = itemsPrice * .18;
     const deliveryPrice = itemsPrice > 200 ? 0 : 20;
@@ -19,7 +19,7 @@ const Basket = (props) => {
                 {cartItems.map((item) => (
                     <div key={item._id} className='row'>
                         <div>{item.name}</div>
-                        {item.quantity} x R {item.price.toFixed(2)}
+                        {item.quantity} x R {cartItems.productPrice}
                     </div>
                 ))}
             </div>

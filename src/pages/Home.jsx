@@ -1,11 +1,14 @@
 import Basket from './Basket';
+import { useEffect, useState } from "react";
+import { onSnapshot, collection, query, orderBy } from "@firebase/firestore";
 import Spinner from '../Components/Post/Feed.js/Spinner';
 import Products from '../Components/Products';
 import './styles.css'
+import { db } from "../firebase";
 import { BsCartCheck } from "react-icons/bs";
 import { Link } from 'react-router-dom';
 const Home = ( props ) => {
-  const { products, onAdd, onRemove, cartItems } = props;
+  const { products, onAdd, onRemove, cartItems, user } = props;
 
   const message = "Be Pleasured By Pinky"
   return (
@@ -15,7 +18,7 @@ const Home = ( props ) => {
           <div className="products">
               {
                 products.map(product => (
-                  <Products onAdd={onAdd} onRemove={onRemove} key={product._id} product={product} cartItems={cartItems} />
+                  <Products user={user} onAdd={onAdd} key={product.id} id={product.id} product={product.data()} cartItems={cartItems} />
                   ))
                 }
               </div>
