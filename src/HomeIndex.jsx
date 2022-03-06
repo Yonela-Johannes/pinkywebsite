@@ -24,7 +24,7 @@ const HomeIndex = () => {
   localStorage.setItem('emptyItem', JSON.stringify(emptyItem))
   const [products, setProducts ] = useState([])
   const [cartItems, setCartItems] = useState([]);
-  const admin = true;
+  const admin = false;
   const [user,setUser] = useState({})
 
   const [currentUser, setCurrentUser] = useState({})
