@@ -23,10 +23,10 @@ const Navbar = ( props ) => {
                 { user ? (
                   <ul className='list'>
                     <li className='listItem'>
-                      <img className='avatar' src={user.image} alt='' />
+                      <img className='avatar' src={user.photoURL} alt='' />
                     </li>
-                    <li className='listItem username'>{user?.userName}</li>
-                    <li className='listItem jobTitle'>{user.jobTitle}</li>
+                    <li className='listItem username'>{user?.displayName}</li>
+                    <li className='listItem jobTitle'>{user.email}</li>
                   </ul>
                 ) : (
                   <Link to='/signin'>

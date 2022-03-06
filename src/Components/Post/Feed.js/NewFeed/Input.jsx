@@ -3,11 +3,9 @@ import 'emoji-mart/css/emoji-mart.css';
 import { getDownloadURL, ref, uploadString } from "@firebase/storage";
 import { Picker } from 'emoji-mart';
 import { useState, useRef } from 'react';
-import { MdMonochromePhotos } from "react-icons/md";
 import { HiPhotograph } from "react-icons/hi";
 import { BsEmojiDizzyFill } from "react-icons/bs";
 import { BiMessageSquareAdd } from "react-icons/bi";
-// import { IconName } from "react-icons/ai";
 import Spinner from '../Spinner';
 import {
   addDoc,
@@ -42,7 +40,7 @@ export default function Input({user, admin }) {
 
     const docRef = await addDoc(collection(db, "posts"), {
       id: user.uid,
-      username: user.userName,
+      username: user.displayName,
       userImg: user.image,
       text: input,
       timestamp: serverTimestamp(),
@@ -81,11 +79,11 @@ export default function Input({user, admin }) {
   return (
     <div className={`border-b border-gray-700 p-3 flex-space-x3 overflow-y-scroll ${loading && 'opacity-60'}`}>
 
-        <p className='userName'>{user?.userName}</p>
-          <img src={user?.image} alt='' className='h-11 w-11 rounded-full cursor-pointer' />
+        <p className='userName'>{user?.displayName}</p>
+          <img src={user?.photoURL} alt='' className='h-11 w-11 rounded-full cursor-pointer' />
         <div className='w-full divide-y divide-gray-700'>
           <div className={`${selectedFile && "pb-7"} ${input && "space-y-2.5"}`}>
-            <textarea placeholder="What's is happening?" rows='2' className='bg-transparent outline-none text-gray placeholder-gray-500 txt-lg tracking-wide w-full min-h-[50px]' value={input} onChange={(e) => setInput(e.target.value)}/>
+            <textarea placeholder="What's is happening?" rows='2' className='bg-transparent outline-none text-[#000000] placeholder-gray-500 txt-lg tracking-wide w-full min-h-[50px]' value={input} onChange={(e) => setInput(e.target.value)}/>
 
             {selectedFile && ( 
               <div className='relative'>

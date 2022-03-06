@@ -23,12 +23,14 @@ function Feed( {user, admin} ) {
             <div className='text-[gray] flex items-center sm:justify-between py-1 px-2 sticky top-0 z-50 bg-gray border-b border-gray-700'>
                 <h2 className='head'>Descussion</h2>
             </div>
-            <Input user={user} />
+            {admin && <Input user={user} /> }
             <div className='pb-72'>
                 {posts.map((post) => (
                     <Post user={user} key={post.id} id={post.id} post={post.data()} />
                 ))}
             </div>
+            
+            
         </div>
     );
 }

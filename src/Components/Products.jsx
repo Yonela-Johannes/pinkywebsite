@@ -5,7 +5,6 @@ import { FaCartArrowDown } from "react-icons/fa";
 
 export default function Product( props ) {
     const { product, onAdd } = props;
-    console.log(product)
     return(
         <div className='wrapper productCard'>
             <div className='product-name'>{product?.productName}</div>

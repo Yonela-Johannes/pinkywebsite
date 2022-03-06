@@ -25,11 +25,8 @@ const HomeIndex = () => {
   const [products, setProducts ] = useState([])
   const [cartItems, setCartItems] = useState([]);
   const admin = false;
-  const [user,setUser] = useState({})
+  const [user, setUser] = useState([])
 
-  const [currentUser, setCurrentUser] = useState({})
-
- 
   const onAdd = (product) => {
     const exist = cartItems.find(x => x._id === product._id)
     if(exist){
@@ -66,11 +63,10 @@ const HomeIndex = () => {
   );
 
   useEffect(() => {
-    const userInfo = fetchUser()
-    setCurrentUser(userInfo)
+    const [userInfo] = fetchUser()
+    setUser(userInfo)
   }, [])
-
-  console.log(currentUser)
+  console.log(user)
   return (
     <div className="App">
             {admin ? (
