@@ -15,6 +15,7 @@
 .appWrapper {
     display: flex;
     flex-direction: row;
+    justify-content: center;
     /* background-color: rgb(231, 231, 231); */
     padding: 10px;
     box-sizing: border-box;
@@ -22,6 +23,12 @@
     align-items: center;
   }
 
+  .loginWrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+  }
   
   .title {
     color:  grey;

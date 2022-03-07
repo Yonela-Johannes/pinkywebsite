@@ -1,7 +1,7 @@
 import Moment from "react-moment";
 import './Post.css';
-
-function Post({id, profilePic, username, timestamp, message, post, postPage, user }) {
+import logo from '../../img/logopinky.png'
+function Post({post, postPage, user }) {
 
 
     return (
@@ -12,7 +12,7 @@ function Post({id, profilePic, username, timestamp, message, post, postPage, use
             <div className={`flex flex-col space-y-1 w-full`}>
                 <div className={`flex ${!postPage && "justify-between"}`}>
                     {postPage && (
-                         <img src={user?.image} alt='profile avatar' className='h-11 w-11 rounded-full mr-4'/>
+                         <img src={logo} alt='profile avatar' className='h-11 w-11 rounded-full mr-4'/>
                     )}
                     <div className="text-[gray]">
                         <div className="inline-block group">

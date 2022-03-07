@@ -1,30 +1,26 @@
 import './card.css'
-import { client } from '../../client';
 import { Link } from 'react-router-dom'
 import logo from "../../img/logopinky.png"
-export default function BlogCard( { admin, user, post } ) {
-  console.log(post)
+import Moment from 'react-moment'
+export default function BlogCard( { admin, user, blog } ) {
+  console.log(blog)
   return (
       <div className='card'>
-        <Link to={'/post/'+ post._id.current}> 
+            <p className='title'>{blog?.title}</p>
           <div className="blogPostHead">
-            <img className='img' src={post?.image.asset.url} alt='' />
+            <img className='img' src={blog?.image} alt='' />
           </div>
           <div className="blogPostContent">
             <div className='blogPostDesc'>
-              <p className='desc'>{post.description}</p>
+              <p className='desc'>{blog.description}</p>
             </div>
             <div className="blogPostBody">
-              <div>
-                <button className='blogButton' >read more</button>
-              </div>
               <div className='userDetailsContainer'>
-                <img className='userImage blogImage' src={logo} alt='' />
-              <p className='releaseDate'>{post.releaseDate}</p>
+                <img className='userImage blogImage' src={logo} alt='' />  
+              <p className='releaseDate'><Moment fromNow>{blog?.timestamp.toDate()}</Moment></p>
               </div>
             </div>
           </div>
-        </Link>
       </div>
   ) 
 }

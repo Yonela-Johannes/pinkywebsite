@@ -1,13 +1,12 @@
 import logo from '../../img/niello.png'
 import siteLogo from '../../img/logopinky.png'
-// import { IconName } from "react-icons/fi";
 import { BsWhatsapp } from "react-icons/bs";
 import { TiLocationOutline} from "react-icons/ti";
 import { RiFacebookCircleLine } from "react-icons/ri";
+
 export default function Footer() {
   return (
       <div className='footer'>
-
         <div className='footerContainer'>
             <p>Be Pleasured By Pinky</p>
             <img className='siteLogo' src={siteLogo} alt='logo' />

@@ -1,32 +1,36 @@
 import './styles.css';
-import React, {useState, useEffect} from 'react';
+import React, { useEffect,useState} from 'react';
 import BlogCard from '../Components/BlogCard/BlogCard';
-import Spinner from '../Components/Post/Feed.js/Spinner';
 import BlogInput from '../Administration/Components/AdminInput/BlogInput';
-
+import { onSnapshot, collection, query, orderBy } from "@firebase/firestore";
+import { db } from "../firebase";
 export default function Blog({user, admin}) {
-    const [load, setLoad ] = useState(false)
-    const [blogPost, setBlogPost] = useState(null) 
-    
+    const [blogs, setBlogs] = useState([]) 
 
-   const message = 'We are loading blogs from database!'
+    useEffect(
+        () =>
+          onSnapshot(
+            query(collection(db, "blog"), orderBy("timestamp", "desc")),
+            (snapshot) => {
+              setBlogs(snapshot.docs);
+            }
+          ),
+        [db]
+      );
     return (
         <div className='main'>
           <h2 className='head'>Explore</h2>
-            <BlogInput />
-            {blogPost && !load ? (
-                <div className='blogHome'>
-                    {blogPost.map(post => (
-                        <BlogCard key={post._id} post={post} admin={admin} user={user} />
-                        ))
-                    }
-                </div>
-
-                ): (
-                    <div className='blogHome'>
-                        <Spinner message={message} />
-                    </div>
-            )}
+          {admin && (
+            <>
+            <BlogInput user={user} admin={admin} />
+            </>
+          )}
+            <div className='blogHome'>
+                {blogs.map(blog => (
+                    <BlogCard key={blog.id} id={blog.id} blog={blog.data()} admin={admin} user={user} />
+                ))
+                }
+            </div>
         </div>
     )
 }

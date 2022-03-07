@@ -11,7 +11,9 @@ import {
   updateDoc,
 } from "@firebase/firestore";
 import { getDownloadURL, ref, uploadString } from "@firebase/storage";
-export default function BlogInput() {
+
+
+export default function BlogInput({user}) {
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
     const [longDes, setLongDes] = useState('');
@@ -26,10 +28,9 @@ export default function BlogInput() {
         setLoading(true);
 
         const docRef = await addDoc(collection(db, "blog"), {
-            // id: session.user.uid,
-            // username: session.user.name,
-            // userImg: session.user.image,
-            // tag: session.user.tag,
+            id: user.uid,
+            username: user.name,
+            userImg: user.photoURL,
             title: title,
             description: description,
             longDesc: longDes,

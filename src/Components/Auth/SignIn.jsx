@@ -27,10 +27,10 @@ export default function Signin() {
         <div>
         <div className='appWrapper'>
             </div>
-            <div onClick={login} className='loginWrapper'>
-               <FcGoogle fontSize={30} />
-               <p className='text-lg font-semibold ml-4'>Sign in with Google</p>
-            </div>
+            <button onClick={login} className='loginWrapper'>
+               <FcGoogle fontSize={20} />
+               <p className='googleText'>Sign in</p>
+            </button>
         </div>
     </div>
   )

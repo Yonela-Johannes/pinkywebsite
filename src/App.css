@@ -35,10 +35,9 @@ img.homeLogo {
 .footer {
     display: flex;
     justify-content: space-between;
-    border-top: 1px solid gray;
-    padding: 5px 10px;
-    background-color: pink;
-    line-height: 5px;
+    border-top: .3px solid rgb(199, 199, 199);
+    padding: 10px 10px;
+    background-color: rgb(250, 225, 229);
 }
 
 img.footerLogo {

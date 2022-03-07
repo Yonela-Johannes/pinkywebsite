@@ -29,8 +29,6 @@ function Feed( {user, admin} ) {
                     <Post user={user} key={post.id} id={post.id} post={post.data()} />
                 ))}
             </div>
-            
-            
         </div>
     );
 }
