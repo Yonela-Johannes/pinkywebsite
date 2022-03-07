@@ -18,7 +18,7 @@ const ShoppingBasket = (props) => {
                 {cartItems.length === 0 && <div className="title-name">Cart is Empty, add Items to cart.</div>}
                 {cartItems.map((item) => (
                     <div key={item._id} className='row'>
-                        <div className="cartItemName">{item.name.length <= 15 ? item.name : 
+                        <div className="cartItemName">{item.productName.length <= 15 ? item.name : 
                         item.name.slice(0,13) + '...'
                     }
                         

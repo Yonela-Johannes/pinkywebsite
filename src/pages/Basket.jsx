@@ -1,10 +1,8 @@
-import React, {useState} from 'react';
-import data from './data'
 import './styles.css'
 
 const Basket = (props) => {
     const { cartItems, onAdd, onRemove } = props;
-    console.log(cartItems)
+    console.log({cartItems})
     const itemsPrice = cartItems.reduce((acc, count) => acc + count.price * count.quantity, 0);
     const taxPrice = itemsPrice * .18;
     const deliveryPrice = itemsPrice > 200 ? 0 : 20;

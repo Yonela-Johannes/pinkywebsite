@@ -231,6 +231,9 @@ button.badge {
         background-color: rgb(243, 243, 243);
         width: 100%;
     }
+    .spinner{
+        display: none;
+    }
     .main {
         margin-top: 200px;
         padding-top: 0;

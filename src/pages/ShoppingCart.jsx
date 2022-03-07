@@ -16,12 +16,12 @@ const ShoppingCart = (props) => {
           <div className='items'>
             {
               cartItems.map((item) => (
-                <div key={item._id} className='mainContainer'>
+                <div key={item.id} className='mainContainer'>
                   <div className='image-container'>
-                    <img src={item?.image.asset.url} className="image" alt="cart" />
+                    <img src={item?.image} className="image" alt="cart" />
                         <div>
-                          <div className='item-name'>{item?.name}</div>
-                          <div className='item-price'>R {item?.price}</div>
+                          <div className='item-name'>{item?.productName}</div>
+                          <div className='item-price'>R {item?.productPrice}</div>
                         </div>
                   </div>
                   <div className="buttons">

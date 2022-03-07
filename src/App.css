@@ -63,6 +63,12 @@ small{
     align-items: center;
     justify-content: flex-start;
 }
+.dev {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
 
 @media only screen and (max-width: 1000px ){
     .navBar {
@@ -91,6 +97,36 @@ small{
     .homepage {
         flex-direction: column;
         flex: 1;
+    }
+    .footer {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding-top: 10px;
+    }
+    .footerContainer {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 10px 0;
+        border-bottom: .3px solid grey;
+    }
+    .footerLinks {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 10px 0;
+        border-bottom: .3px solid grey;
+    }
+    .dev {
+        display: flex;
+        padding: 10px 0;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+    }
+    .dev p{
+        margin: 8px 0;
     }
   }
 
@@ -122,24 +158,22 @@ a{
 
 svg.footer-logo-app {
     color: green;
-    padding: 0 5px;
-    margin: 0;
 }
 svg.footer-logo-fb {
     color: rgb(0, 104, 173);
-    padding: 0 5px;
-    margin: 0;
 }
 svg.footer-logo-loc {
     color: rgb(255, 0, 0);
-    padding: 0 5px;
-    margin: 0;
 }
 
 small{
+    cursor: pointer;
     padding: 10px 0;
+    color: gray;
+    font-weight: lighter;
 }
 
 .log{
     font-size: 12px;
+    margin: 5px;
 }

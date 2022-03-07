@@ -1,10 +1,7 @@
 import Basket from './Basket';
-import { useEffect, useState } from "react";
-import { onSnapshot, collection, query, orderBy } from "@firebase/firestore";
 import Spinner from '../Components/Post/Feed.js/Spinner';
 import Products from '../Components/Products';
 import './styles.css'
-import { db } from "../firebase";
 import { BsCartCheck } from "react-icons/bs";
 import { Link } from 'react-router-dom';
 const Home = ( props ) => {
@@ -31,9 +28,9 @@ const Home = ( props ) => {
                 </div>
               )}
               {cartItems.length === 0 && (
-                <>
+                <div className='spinner'>
                 <Spinner message={message} />
-                </>
+                </div>
               )}
         </div>
     </main>
