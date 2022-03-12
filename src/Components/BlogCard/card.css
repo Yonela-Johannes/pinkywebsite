@@ -166,3 +166,11 @@ img.blogImage {
         line-height: 24px;
     }    
 }
+
+.bottomContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}

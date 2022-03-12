@@ -16,7 +16,7 @@ import {
     SwitchHorizontalIcon,
     TrashIcon,
   } from "@heroicons/react/outline";
-  import { useRoutes } from "react-router-dom";
+   import { useRoutes } from "react-router-dom";
   import {
     HeartIcon as HeartIconFilled,
     ChatIcon as ChatIconFilled,
@@ -26,11 +26,43 @@ import {
   import { db } from "../../firebase";
 
 
-function Post({post, postPage, user }) {
-    console.log(user)
+function Post(props) {
+    const{post, postPage, user, id } = props;
+    const [isOpen, setIsOpen] = useRecoilState(modalState);
+    const [postId, setPostId] = useRecoilState(postIdState);
+    const [comments, setComments] = useState([]);
+    const [likes, setLikes] = useState([]);
+    const [liked, setLiked] = useState(false);
+    const router = useRoutes    
+
+    useEffect(
+        () =>
+          onSnapshot(collection(db, "posts", id, "likes"), (snapshot) =>
+            setLikes(snapshot.docs)
+          ),
+        [db, id]
+      );
+
+    useEffect(
+        () =>
+          setLiked(
+            likes.findIndex((like) => like.id === user?.uid) !== -1
+          ),
+        [likes]
+      );
+
+    const likePost = async () => {
+        if (liked) {
+          await deleteDoc(doc(db, "posts", id, "likes", user.uid));
+        } else {
+          await setDoc(doc(db, "posts", id, "likes", user.uid), {
+            username: user.displayName,
+          });
+        }
+      };
 
     return (
-        <div className={`p-3 flex cursor pointer border-b border-gray`} >
+        <div className={`p-3 flex cursor pointer border-b border-gray`} onClick={() => router.push(`/${id}`)} >
             {!postPage && (
                 <img src={logo} alt='profile avatar' className='h-11 w-9 rounded-full mr-4'/>
             )}
@@ -57,28 +89,25 @@ function Post({post, postPage, user }) {
                      <p className="text-[#272727] text-[16px] sm:text-base mt-2 ml-10 cursor-pointer">{post?.text}</p>
                 )}
                 <img src={post?.image} alt='' className="rounded-2xl max-h-[700px] object-cover mr-2" />
-                
                 <div className={`text-[gray] flex justify-between w-10/12 ${postPage && "mx-auto"}`}>
                 <div
             className="flex items-center space-x-1 group"
             onClick={(e) => {
-            //   e.stopPropagation();
-            //   setPostId(id);
-            //   setIsOpen(true);
+              e.stopPropagation();
+              setPostId(id);
+              setIsOpen(true);
             }}
           >
-            <div className="icon group-hover:bg-[#1d9bf0] group-hover:bg-opacity-10">
-              <ChatIcon className="h-5 group-hover:text-[#1d9bf0]" />
+            <div className="icon group-hover:bg-[#575757] group-hover:bg-opacity-10">
+              <ChatIcon className="h-[22px] group-hover:text-[#000000]" />
             </div>
-            {/* {comments.length > 0 && (
+            {comments.length > 0 && (
               <span className="group-hover:text-[#1d9bf0] text-sm">
                 {comments.length}
               </span>
-            )} */}
+            )}
           </div>
-
-      </div>
-          {/* {user.uid === post?.id ? (
+          {user.uid === post?.id ? (
             <div
               className="flex items-center space-x-1 group"
               onClick={(e) => {
@@ -97,9 +126,9 @@ function Post({post, postPage, user }) {
                 <SwitchHorizontalIcon className="h-5 group-hover:text-green-500" />
               </div>
             </div>
-          )} */}
+          )}
 
-          {/* <div
+        <div
             className="flex items-center space-x-1 group"
             onClick={(e) => {
               e.stopPropagation();
@@ -122,12 +151,14 @@ function Post({post, postPage, user }) {
                 {likes.length}
               </span>
             )}
-          </div> */}
-
-          {/* <div className="icon group">
-            <ShareIcon className="h-5 group-hover:text-[#1d9bf0]" />
-          </div> */}     
           </div>
+
+          <div className="icon group">
+            <ShareIcon className="h-5 group-hover:text-[#1d9bf0]" />
+          </div>  
+          </div>
+
+      </div>
     </div>
     )
 }

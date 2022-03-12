@@ -7,6 +7,7 @@ import Input from '../Feed.js/NewFeed/Input'
 
 
 function Feed( {user, admin} ) {
+  
     const [ posts, setPosts ] = useState([])
     useEffect(
         () =>
