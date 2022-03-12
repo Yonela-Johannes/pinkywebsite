@@ -1,39 +1,20 @@
 import Basket from './Basket';
-import Spinner from '../Components/Post/Feed.js/Spinner';
-import Products from '../Components/Products';
+import { FaCartArrowDown } from "react-icons/fa";
 import './styles.css'
-import { BsCartCheck } from "react-icons/bs";
-import { Link } from 'react-router-dom';
+import '../Components/product.css'
 const Home = ( props ) => {
-  const { products, onAdd, onRemove, cartItems, user } = props;
-
-  const message = "Be Pleasured By Pinky"
+  const { product, onAdd } = props;
   return (
-    <main className='main'>
-          <h2 className='head'>Products</h2>
-        <div className="container">
-          <div className="products">
-              {
-                products.map(product => (
-                  <Products user={user} onAdd={onAdd} key={product.id} id={product.id} product={product.data()} cartItems={cartItems} />
-                  ))
-                }
+          <div className='wrapper productCard'>
+              <div className='product-name'>{product?.productName}</div>
+              <div className='main-container'>
+                  <img className="image" src={product?.image} alt=' product ' />
+                  <div className='product-container'>
+                  </div>
               </div>
-              {cartItems.length > 0 && (
-                <div className="basket">
-                  <Basket onAdd={onAdd} onRemove={onRemove} cartItems={cartItems} />
-                  <Link to="/cart">
-                    <button className="homeShoppingCartButton" ><BsCartCheck className='homeCartIcon' /><div>Go to Shopping Cart</div></button>
-                  </Link>
-                </div>
-              )}
-              {cartItems.length === 0 && (
-                <div className='spinner'>
-                <Spinner message={message} />
-                </div>
-              )}
-        </div>
-    </main>
+              <div className="product-price">R {product?.productPrice}</div>
+              <button className="homeCartButton"  onClick={() => onAdd(product)}><FaCartArrowDown className='homeCartIcon' /><div>Add To Cart</div></button>
+          </div>
   )
 };
 export default Home

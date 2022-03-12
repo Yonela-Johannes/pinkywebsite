@@ -4,8 +4,8 @@ import { IoMdAddCircleOutline } from "react-icons/io";
 
 const ShoppingBasket = (props) => {
     const { cartItems } = props;
-    
-    const itemsPrice = cartItems.reduce((acc, count) => acc + count.price * count.quantity, 0);
+    console.log({cartItems})
+    const itemsPrice = cartItems.reduce((acc, count) => acc + count.productPrice * count.quantity, 0);
     const taxPrice = itemsPrice * .18;
     const deliveryPrice = itemsPrice > 200 ? 0 : 20;
     const totalPrice = itemsPrice + taxPrice + deliveryPrice;
@@ -17,20 +17,20 @@ const ShoppingBasket = (props) => {
             <div className='cartContainerDetailsWrapper'>
                 {cartItems.length === 0 && <div className="title-name">Cart is Empty, add Items to cart.</div>}
                 {cartItems.map((item) => (
-                    <div key={item._id} className='row'>
+                    <div key={item.id} id={item.id} className='row'>
                         <div className="cartItemName">{item.productName.length <= 15 ? item.name : 
                         item.name.slice(0,13) + '...'
                     }
                         
                         </div>
                             <div className="itemCount">
-                                {item.quantity} {item.quantity === 1 || item.quantity === 0 ? 'item' : 'items'} x R {item.price.toFixed(2)}
+                                {item.quantity} {item.quantity === 1 || item.quantity === 0 ? 'item' : 'items'} x R {item.productPrice}
                             </div>
                         <div className='totalItemWrapper'>
                             <div className="itemsTotal">Total:</div>
                             <div style={{display: 'flex', alignItems: 'end'}}>
                                 <div className='itemsTotal rand'>R</div>
-                                <div style={{fontWeight: 'bold', fontSize: "13px"}}>{item.quantity * item.price}</div>
+                                <div style={{fontWeight: 'bold', fontSize: "13px"}}>{item.quantity * item.productPrice}</div>
                             </div>
                         </div>
                     </div>

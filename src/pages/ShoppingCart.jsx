@@ -8,7 +8,7 @@ import './styles.css'
 const ShoppingCart = (props) => {
   const { onAdd, onRemove, cartItems } = props;
   const message = 'Be  Pleasured by Pinky'
-
+  console.log(props)
   return (
     <div className='mainCartContainer'>
         <h3 className='head'>Shopping List</h3>
@@ -16,7 +16,7 @@ const ShoppingCart = (props) => {
           <div className='items'>
             {
               cartItems.map((item) => (
-                <div key={item.id} className='mainContainer'>
+                <div id={props.id} key={props.id} className='mainContainer'>
                   <div className='image-container'>
                     <img src={item?.image} className="image" alt="cart" />
                         <div>
@@ -34,6 +34,9 @@ const ShoppingCart = (props) => {
             </div>
           </div>
           <>
+          <button>
+            Checkout
+          </button>
             {cartItems.length === 0 && 
             <div className='emptyCart'>
                 <p className='cartHead'>Cart Empty</p>
@@ -45,9 +48,9 @@ const ShoppingCart = (props) => {
               </div>
             }
           </>
-          <ShoppingBasket 
+          {/* <ShoppingBasket 
             onAdd={onAdd}
-            cartItems={cartItems} />  
+            cartItems={cartItems} />   */}
       </div>
     </div>
   )

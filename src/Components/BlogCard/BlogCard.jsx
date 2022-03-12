@@ -2,10 +2,12 @@ import './card.css'
 import { Link } from 'react-router-dom'
 import logo from "../../img/logopinky.png"
 import Moment from 'react-moment'
-export default function BlogCard( { admin, user, blog } ) {
-  console.log(blog)
+export default function BlogCard(props) {
+  const {blog} = props;
+
   return (
       <div className='card'>
+        <Link blog={blog} to={`/post/${props.id}`}>
             <p className='title'>{blog?.title}</p>
           <div className="blogPostHead">
             <img className='img' src={blog?.image} alt='' />
@@ -21,6 +23,7 @@ export default function BlogCard( { admin, user, blog } ) {
               </div>
             </div>
           </div>
+        </Link>
       </div>
   ) 
 }

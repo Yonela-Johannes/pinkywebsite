@@ -28,9 +28,6 @@ export default function BlogInput({user}) {
         setLoading(true);
 
         const docRef = await addDoc(collection(db, "blog"), {
-            id: user.uid,
-            username: user.name,
-            userImg: user.photoURL,
             title: title,
             description: description,
             longDesc: longDes,

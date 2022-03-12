@@ -13,40 +13,43 @@ import Signin  from './pages/Signin';
 import './app.css'
 import { db } from "./firebase";
 import Blog from './pages/Blog';
-import Post from './Components/BlogCard/Post';
+import BlogPost from './Components/BlogCard/BlogPost';
 import "./styles/global.css"
 import { userAccesToken } from './utils/fetchUserDetails'
 import { fetchUser } from './utils/fetchUserDetails'
+import DeliveryScreen from './screens/DeliveryScreen';
 
 const HomeIndex = () => {
 
   const emptyItem = []
   localStorage.setItem('emptyItem', JSON.stringify(emptyItem))
   const [products, setProducts ] = useState([])
+  const [blogs, setBlogs] = useState([]) 
   const [cartItems, setCartItems] = useState([]);
   const admin = false;
-  // const [user, setUser] = useState([])
-  let user = false
+  const [user, setUser] = useState([])
+  // let user = false
 
-  const onAdd = (product) => {
-    const exist = cartItems.find(x => x.id === product.id)
+  const onAdd = (id) => {
+    const exist = cartItems.find(x => x.id === id)
     if(exist){
       setCartItems(cartItems.map((x) => 
-        x.id === product.id ? {...exist, quantity: exist.quantity + 1} : x
+        x.id === id ? {...exist, quantity: exist.quantity + 1} : x
       ));
-    } else {
-      setCartItems([...cartItems, {...product, quantity: 1}])
+    } 
+    else {
+      setCartItems([...cartItems, {...id, quantity: 1}])
     }
     localStorage.setItem('cartItems', JSON.stringify(cartItems));
   };
 
-  const onRemove = (product) => {
-    const exist = cartItems.find((x) => x.id === product.id);
+  const onRemove = (id) => {
+    const exist = cartItems.find((x) => x.id === id);
     if(exist.quantity === 1){
-      setCartItems(cartItems.filter((x) => x.id !== product.id));
+      setCartItems(cartItems.filter((x) => x.id !== id));
     }else {
       setCartItems(cartItems.map((x) => 
-      x.id === product.id ? {...exist, quantity: exist.quantity - 1} : x
+      x.id === id ? {...exist, quantity: exist.quantity - 1} : x
     ));  
     }
     localStorage.setItem('cartItems', JSON.stringify(cartItems))
@@ -62,11 +65,20 @@ const HomeIndex = () => {
       ),
     [db]
   );
-
-  // useEffect(() => {
-  //   const [userInfo] = fetchUser()
-  //   setUser(userInfo)
-  // }, [])
+  useEffect(
+    () =>
+      onSnapshot(
+        query(collection(db, "blog"), orderBy("timestamp", "desc")),
+        (snapshot) => {
+          setBlogs(snapshot.docs);
+        }
+      ),
+    [db]
+  );
+  useEffect(() => {
+    const [userInfo] = fetchUser()
+    setUser(userInfo)
+  }, [])
 
   return (
     <div className="App">
@@ -75,14 +87,27 @@ const HomeIndex = () => {
                   <Navbar countCartItems={cartItems.length} user={user} admin={admin}/>
                 <main>
                   <Routes>
-                    <Route path='/' element={<Home products={products} onAdd={onAdd} onRemove={onRemove} cartItems={cartItems} />} />
+                  <Route path='/' element={
+                    <div className='main'>
+                      <h2 className='head'>Products</h2>
+                      <div className="container">                   
+                            {products.map((product) => {
+                              return(
+                                    <div key={product.id} id={product.id} className='products'> 
+                                      <Home key={product.id} id={product.id} product={product.data()} onAdd={onAdd} onRemove={onRemove} cartItems={cartItems}/>
+                                    </div>
+                              )
+                            })
+                          }
+                      </div>
+                    </div>
+                    } />
                     <Route path='/cart' element={<ShoppingCart products={products} onAdd={onAdd} onRemove={onRemove} cartItems={cartItems} />} />
                     <Route path='/feeds' element={user ? <Feeds user={user} admin={admin} /> : <Signin />} />
                     <Route path='/Admin' element={<Admin />} />
                     <Route path='/blog' element={<Blog user={user} admin={admin}  />} />
+                    <Route path='/post/:id' element={<BlogPost blogs={blogs.map((blog) => blog)} user={user} admin={admin}  />} />
                     <Route path='/signin' element={user ? <Navigate to="/" /> : <Signin />} />
-                    {/* Post routing */}
-                    <Route path='/post/:slug' element={user ? <Post /> : <Signin />} />
                   </Routes>
                 </main>
                 <Footer />
@@ -91,18 +116,31 @@ const HomeIndex = () => {
                 <div className='main-app'>
                 <Navbar countCartItems={cartItems.length} user={user}/>
               <main>
-                <Routes>
-                  <Route path='/' element={<Home products={products} onAdd={onAdd} onRemove={onRemove} cartItems={cartItems} />} />
-                  <Route path='/cart' element={<ShoppingCart products={products} onAdd={onAdd} onRemove={onRemove} cartItems={cartItems} />} />
-                  <Route path='/feeds' element={user ? <Feeds user={user} admin={admin}  /> : <Signin />} />
-                  <Route path='/Admin' element={<Admin />} />
-                  <Route path='/blog' element={<Blog user={user} admin={admin}  />} />
-                  <Route path='/signin' element={user ? <Navigate to="/" /> : <Signin />} />
-                  <Route path='/signup' element={<SignUp />} />
-                  {/* Post routing */}
-                  <Route path='/:_id' element={user ? <Post /> : <Signin />} />
-                  <Route path='products/<slug/>' element={user ? <Product products={products} /> : <Signin />} />
-                </Routes>
+                  <Routes>
+                  <Route path='/' element={
+                    <div className='main'>
+                      <h2 className='head'>Products</h2>
+                      <div className="container">                   
+                            {products.map((product) => {
+                              return(
+                                    <div key={product.id} id={product.id} className='products'> 
+                                      <Home key={product.id} id={product.id} product={product.data()} onAdd={onAdd} onRemove={onRemove} cartItems={cartItems}/>
+                                    </div>
+                              )
+                            })
+                          }
+                      </div>
+                    </div>
+                    } />
+                    <Route path='/cart' element={<ShoppingCart key={products.id} id={products.id} products={products} onAdd={onAdd} onRemove={onRemove} cartItems={cartItems} />} />
+                    <Route path='/feeds' element={user ? <Feeds user={user} admin={admin}  /> : <Signin />} />
+                    <Route path='/Admin' element={<Admin />} />
+                    <Route path='/blog' element={<Blog user={user} admin={admin}  />} />
+                    <Route path='/post/:id' element={<BlogPost blogs={blogs.map((blog) => blog)} user={user} admin={admin}  />} />
+                    <Route path='/signin' element={user ? <Navigate to="/" /> : <Signin />} />
+                    <Route path='/signup' element={<SignUp />} />
+                    <Route path='/delivery' element={<DeliveryScreen />} />
+                  </Routes>
               </main>
               <Footer />
           </div>

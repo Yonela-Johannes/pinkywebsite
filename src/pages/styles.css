@@ -19,6 +19,14 @@
 }
 .container {
     display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 3px;
+    margin: 5px;
+    border-radius:  15px;
+    justify-content: center;
+    align-items: center;
+
 }
 .products {
     display: flex;

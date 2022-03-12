@@ -1,0 +1,11 @@
+.checkout-steps {
+    border-bottom: 0.3px solid pink;
+    color: gray;
+    flex: 1;
+    padding: 10px;
+}
+
+.checkout-steps > div.active {
+    border-top: 1px solid pink;
+    color: pink;
+}

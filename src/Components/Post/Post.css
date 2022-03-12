@@ -11,7 +11,9 @@
     align-items: center;
     padding: 15px;
 }
-.post__avatar{
+img.post__avatar{
+    width: 80px;
+    height: 80px;
     margin-right: 10px;
 }
 .post__topInfo > h3 {
