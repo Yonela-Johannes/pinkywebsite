@@ -19,6 +19,8 @@ import { userAccesToken } from './utils/fetchUserDetails'
 import { fetchUser } from './utils/fetchUserDetails'
 import DeliveryScreen from './screens/DeliveryScreen';
 import PostPage from './Components/Post/PostPage';
+import Responses from './pages/Responses';
+import Adsboard from './pages/Adsboard';
 
 const HomeIndex = () => {
 
@@ -109,6 +111,7 @@ const HomeIndex = () => {
                     <Route path='/blog' element={<Blog user={user} admin={admin}  />} />
                     <Route path='/post/:id' element={<BlogPost blogs={blogs.map((blog) => blog)} user={user} admin={admin}  />} />
                     <Route path='/signin' element={user ? <Navigate to="/" /> : <Signin />} />
+                    <Route path='/responses' element={<Responses />} />
                   </Routes>
                 </main>
                 <Footer />
@@ -140,10 +143,11 @@ const HomeIndex = () => {
                     <Route path='/post/:id' element={<BlogPost blogs={blogs.map((blog) => blog)} user={user} admin={admin}  />} />
                     <Route path='/comments/:id' element={<PostPage user={user} admin={admin}  />} />
                     <Route path='/signin' element={user ? <Navigate to="/" /> : <Signin />} />
-                    <Route path='/signup' element={<SignUp />} />
+                    <Route path='/responses' element={<Responses />} />
                     <Route path='/delivery' element={<DeliveryScreen />} />
                   </Routes>
               </main>
+              <Adsboard />
               <Footer />
           </div>
           )}

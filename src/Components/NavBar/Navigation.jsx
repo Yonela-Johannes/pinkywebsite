@@ -57,7 +57,7 @@ const Navigation = (props) => {
                                             ) : ''
                                         }
                                         <li className='navLink'>
-                                            <NavLink to='/signin'>
+                                            <NavLink to='/responses'>
                                                 <div aria-label='Feedback' color='inherit'>
                                                     <AiOutlineWoman className='icon' />
                                                 </div>                                   
