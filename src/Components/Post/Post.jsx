@@ -5,6 +5,8 @@ import {
     collection,
     deleteDoc,
     doc,
+    query,
+    orderBy,
     onSnapshot,
     setDoc,
   } from "@firebase/firestore";
@@ -16,11 +18,14 @@ import {
     SwitchHorizontalIcon,
     TrashIcon,
   } from "@heroicons/react/outline";
-   import { useRoutes } from "react-router-dom";
   import {
     HeartIcon as HeartIconFilled,
     ChatIcon as ChatIconFilled,
   } from "@heroicons/react/solid";
+  import { RiChatHeartLine, RiShareForwardLine } from "react-icons/ri";
+  import { GiCrownedHeart } from "react-icons/gi";
+  import { useLocation } from 'react-router-dom'
+  import { useNavigate } from 'react-router-dom';
   import { useRecoilState } from "recoil";
   import { modalState, postIdState } from "../../atoms/modalAtom";
   import { db } from "../../firebase";
@@ -33,8 +38,20 @@ function Post(props) {
     const [comments, setComments] = useState([]);
     const [likes, setLikes] = useState([]);
     const [liked, setLiked] = useState(false);
-    const router = useRoutes    
+    let history = useLocation()
+    const navigate = useNavigate();
 
+    useEffect(
+        () =>
+          onSnapshot(
+            query(
+              collection(db, "posts", id, "comments"),
+              orderBy("timestamp", "desc")
+            ),
+            (snapshot) => setComments(snapshot.docs)
+          ),
+        [db, id]
+      );
     useEffect(
         () =>
           onSnapshot(collection(db, "posts", id, "likes"), (snapshot) =>
@@ -62,7 +79,9 @@ function Post(props) {
       };
 
     return (
-        <div className={`p-3 flex cursor pointer border-b border-gray`} onClick={() => router.push(`/${id}`)} >
+        <div className={`p-3 flex cursor pointer border-b border-gray`} 
+        onClick={() => navigate(`/comments/${id}`)}
+         >
             {!postPage && (
                 <img src={logo} alt='profile avatar' className='h-11 w-9 rounded-full mr-4'/>
             )}
@@ -99,7 +118,7 @@ function Post(props) {
             }}
           >
             <div className="icon group-hover:bg-[#575757] group-hover:bg-opacity-10">
-              <ChatIcon className="h-[22px] group-hover:text-[#000000]" />
+              <RiChatHeartLine className="h-[22px] group-hover:text-[#000000]" />
             </div>
             {comments.length > 0 && (
               <span className="group-hover:text-[#1d9bf0] text-sm">
@@ -113,39 +132,33 @@ function Post(props) {
               onClick={(e) => {
                 e.stopPropagation();
                 deleteDoc(doc(db, "posts", id));
-                router.push("/feeds");
+                // router.push("/feeds");
               }}
             >
               <div className="icon group-hover:bg-red-600/10">
                 <TrashIcon className="h-5 group-hover:text-red-600" />
               </div>
             </div>
-          ) : (
-            <div className="flex items-center space-x-1 group">
-              <div className="icon group-hover:bg-green-500/10">
-                <SwitchHorizontalIcon className="h-5 group-hover:text-green-500" />
-              </div>
-            </div>
-          )}
+          ) : ""}
 
         <div
-            className="flex items-center space-x-1 group"
+            className="flex items-center justify-between space-x-2"
             onClick={(e) => {
               e.stopPropagation();
               likePost();
             }}
           >
-            <div className="icon group-hover:bg-pink-600/10">
+            <div className="icon">
               {liked ? (
-                <HeartIconFilled className="h-5 text-pink-600" />
+                <GiCrownedHeart className="h-5 text-[25px] text-[#ff8383]" />
               ) : (
-                <HeartIcon className="h-5 group-hover:text-pink-600" />
+                <GiCrownedHeart className="h-5 text-[25px]" />
               )}
             </div>
             {likes.length > 0 && (
               <span
-                className={`group-hover:text-pink-600 text-sm ${
-                  liked && "text-pink-600"
+                className={`group-hover:text-pink-600 text-[14px] text-sm ${
+                  liked && "text-pink-600 text-[14px]"
                 }`}
               >
                 {likes.length}
@@ -154,7 +167,7 @@ function Post(props) {
           </div>
 
           <div className="icon group">
-            <ShareIcon className="h-5 group-hover:text-[#1d9bf0]" />
+            <RiShareForwardLine className="h-5 group-hover:text-[#1d9bf0]" />
           </div>  
           </div>
 

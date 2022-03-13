@@ -18,6 +18,7 @@ import "./styles/global.css"
 import { userAccesToken } from './utils/fetchUserDetails'
 import { fetchUser } from './utils/fetchUserDetails'
 import DeliveryScreen from './screens/DeliveryScreen';
+import PostPage from './Components/Post/PostPage';
 
 const HomeIndex = () => {
 
@@ -137,6 +138,7 @@ const HomeIndex = () => {
                     <Route path='/Admin' element={<Admin />} />
                     <Route path='/blog' element={<Blog user={user} admin={admin}  />} />
                     <Route path='/post/:id' element={<BlogPost blogs={blogs.map((blog) => blog)} user={user} admin={admin}  />} />
+                    <Route path='/comments/:id' element={<PostPage user={user} admin={admin}  />} />
                     <Route path='/signin' element={user ? <Navigate to="/" /> : <Signin />} />
                     <Route path='/signup' element={<SignUp />} />
                     <Route path='/delivery' element={<DeliveryScreen />} />
