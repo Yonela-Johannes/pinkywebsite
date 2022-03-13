@@ -11,20 +11,13 @@ import {
     setDoc,
   } from "@firebase/firestore";
   import { useEffect, useState } from "react";
-  import {
-    ChatIcon,
-    HeartIcon,
-    ShareIcon,
-    SwitchHorizontalIcon,
-    TrashIcon,
-  } from "@heroicons/react/outline";
+  import {TrashIcon} from "@heroicons/react/outline";
   import {
     HeartIcon as HeartIconFilled,
     ChatIcon as ChatIconFilled,
   } from "@heroicons/react/solid";
   import { RiChatHeartLine, RiShareForwardLine } from "react-icons/ri";
   import { GiCrownedHeart } from "react-icons/gi";
-  import { useLocation } from 'react-router-dom'
   import { useNavigate } from 'react-router-dom';
   import { useRecoilState } from "recoil";
   import { modalState, postIdState } from "../../atoms/modalAtom";
@@ -38,7 +31,6 @@ function Post(props) {
     const [comments, setComments] = useState([]);
     const [likes, setLikes] = useState([]);
     const [liked, setLiked] = useState(false);
-    let history = useLocation()
     const navigate = useNavigate();
 
     useEffect(
@@ -70,9 +62,9 @@ function Post(props) {
 
     const likePost = async () => {
         if (liked) {
-          await deleteDoc(doc(db, "posts", id, "likes", user.uid));
+          await deleteDoc(doc(db, "posts", id, "likes", user?.uid));
         } else {
-          await setDoc(doc(db, "posts", id, "likes", user.uid), {
+          await setDoc(doc(db, "posts", id, "likes", user?.uid), {
             username: user.displayName,
           });
         }
@@ -165,10 +157,6 @@ function Post(props) {
               </span>
             )}
           </div>
-
-          <div className="icon group">
-            <RiShareForwardLine className="h-5 group-hover:text-[#1d9bf0]" />
-          </div>  
           </div>
 
       </div>

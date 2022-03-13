@@ -12,7 +12,7 @@ import {
   serverTimestamp,
 } from "@firebase/firestore";
 import { db } from "../firebase";
-// import { useSession } from "next-auth/react";
+
 import {
   CalendarIcon,
   ChartBarIcon,
@@ -20,7 +20,6 @@ import {
   PhotographIcon,
   XIcon,
 } from "@heroicons/react/outline";
-// import { useRouter } from "next/router";
 import Moment from "react-moment";
 
 function Modal(props) {

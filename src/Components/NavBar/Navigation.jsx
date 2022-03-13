@@ -5,6 +5,7 @@ import { BiLogIn } from "react-icons/bi";
 import { BiLogOut } from "react-icons/bi";
 import { AiOutlineShop } from "react-icons/ai";
 import { VscFeedback } from "react-icons/vsc";
+import { AiOutlineWoman } from "react-icons/ai";
 import { Badge } from '@mui/material';
 import { GrBlog } from "react-icons/gr";
 import './style.css'
@@ -57,8 +58,8 @@ const Navigation = (props) => {
                                         }
                                         <li className='navLink'>
                                             <NavLink to='/signin'>
-                                                <div aria-label='sign out' color='inherit'>
-                                                    <BiLogIn className='icon logout' />
+                                                <div aria-label='Feedback' color='inherit'>
+                                                    <AiOutlineWoman className='icon' />
                                                 </div>                                   
                                             </NavLink></li>
                                 </ul>

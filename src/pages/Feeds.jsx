@@ -6,7 +6,6 @@ import { modalState } from '../atoms/modalAtom';
 
 
 const Feeds = (props) => {
-  console.log({props})
   const[isOpen, setIsOpen] = useRecoilState(modalState)
   const {user , admin } = props;
   return <div className='main'>
@@ -16,7 +15,7 @@ const Feeds = (props) => {
         <Modal user={user} admin={admin} />
       }
     </div>
-  </div>;
+  </div>
 };
 
 export default Feeds;
