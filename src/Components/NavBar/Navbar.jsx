@@ -31,10 +31,6 @@ const Navbar = ( props ) => {
                 ) : (
                   <Link to='/signin'>
                     <ul className='list'>
-                      <li className='listItem'>
-                        <img className='avatar' src={avatar} alt='user avatar' />
-                      </li>
-                      <li className='listItem username'>Jane Doe</li>
                       <li className='listItem login'>log in</li>
                     </ul>
                   </Link>

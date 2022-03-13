@@ -1,11 +1,11 @@
 import './styles.css'
 
 const Basket = (props) => {
-    const { cartItems, products, onAdd, onRemove } = props;
+    const { cartItems } = props;
+
     const itemsPrice = cartItems.reduce((acc, count) => acc + count.price * count.quantity, 0);
-    const taxPrice = itemsPrice * .18;
-    const deliveryPrice = itemsPrice > 200 ? 0 : 20;
-    const totalPrice = itemsPrice + taxPrice + deliveryPrice;
+    const deliveryPrice = itemsPrice > 500 ? 0 : 20;
+    const totalPrice = itemsPrice + deliveryPrice;
 
     return (
         <aside className="aside">
@@ -14,9 +14,9 @@ const Basket = (props) => {
             <div>
                 {cartItems.length === 0 && <div className="title-name">Cart is Empty, add Items to cart.</div>}
                 {cartItems.map((item) => (
-                    <div key={item._id} className='row'>
-                        <div>{item.name}</div>
-                        {item.quantity} x R {cartItems.productPrice}
+                    <div className='row'>
+                        <div>{item.productName}</div>
+                        R {item.productPrice}
                     </div>
                 ))}
             </div>
@@ -26,10 +26,6 @@ const Basket = (props) => {
                 <div className='col'>
                     <div>Price</div>
                     <div>R {itemsPrice.toFixed(2)}</div>
-                </div>
-                <div className='col'>
-                    <div>Tax</div>
-                    <div>R {taxPrice.toFixed(2)}</div>
                 </div>
                 <div className='col'>
                     <div>Delivery</div>

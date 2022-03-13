@@ -16,6 +16,10 @@
 main {
     flex: 1;
 }
+.homeContainer {
+    display: flex;
+    flex-direction: row;
+}
 .loadingSpinner {
     display: flex;
     flex-direction: column;

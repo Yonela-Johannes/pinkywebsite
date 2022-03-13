@@ -37,7 +37,7 @@ const Navigation = (props) => {
                                     </li>
                                     <li className='navLink'><NavLink to='/feeds'>
                                             <div aria-label='Newsfeeds' color='inherit'>
-                                                <MdOutlineDynamicFeed className={user ? 'icon' : 'iconDisabled'}/>
+                                                <MdOutlineDynamicFeed className='icon' />
                                             </div>
                                         </NavLink></li>
                                     <li className='navLink'>

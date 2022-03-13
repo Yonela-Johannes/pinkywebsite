@@ -50,10 +50,16 @@
 }
 .login {
   padding: 0 10px;
-  color: rgb(255, 183, 183);
+  color: rgb(255, 112, 112);
   font-size: 12px;
+  padding: 2px 5px;
   font-weight: bold;
 }
+.login:hover {
+  background-color: rgb(241, 241, 241);
+  border-radius: 15px;
+}
+
 .grow {
   flex-grow: 1;
   display: flex;
