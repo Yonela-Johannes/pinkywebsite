@@ -59,7 +59,6 @@ const likePost = async () => {
 
   return (
       <div className='card'>
-        {/* <Link blog={blog} to={`/post/${props.id}`}> */}
             <p className='title'>{blog?.title}</p>
           <div className="blogPostHead">
             <img className='img' src={blog?.image} alt='' />
@@ -106,8 +105,6 @@ const likePost = async () => {
               </div>  
             </div>
           </div>
-
-        {/* </Link> */}
       </div>
   ) 
 }

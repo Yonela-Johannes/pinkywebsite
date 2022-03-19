@@ -14,7 +14,7 @@ const Addproducts = () => {
     }
     return (
         <div>
-            <div className='border-b border-gray-600 max-w-2xl flex items-center justify-center text-center'>
+            <div className='border-b border-gray-600 max-w-[400px] flex items-center justify-center text-center'>
                 <h2 className={`head `}>Add Products</h2>
             </div>
             <Input />

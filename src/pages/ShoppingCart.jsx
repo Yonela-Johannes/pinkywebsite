@@ -47,7 +47,9 @@ const ShoppingCart = (props) => {
               cartItems={cartItems} />  
         </div>
       </div>
+      {cartItems.length && (
         <button className='checkoutButton'>Checkout</button>
+      )}
     </div>
   )
 };

@@ -16,7 +16,7 @@ import {
     HeartIcon as HeartIconFilled,
     ChatIcon as ChatIconFilled,
   } from "@heroicons/react/solid";
-  import { RiChatHeartLine, RiShareForwardLine } from "react-icons/ri";
+  import { RiChatHeartLine } from "react-icons/ri";
   import { GiCrownedHeart } from "react-icons/gi";
   import { useNavigate } from 'react-router-dom';
   import { useRecoilState } from "recoil";
@@ -124,7 +124,6 @@ function Post(props) {
               onClick={(e) => {
                 e.stopPropagation();
                 deleteDoc(doc(db, "posts", id));
-                // router.push("/feeds");
               }}
             >
               <div className="icon group-hover:bg-red-600/10">

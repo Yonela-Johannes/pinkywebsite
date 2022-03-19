@@ -1,16 +1,11 @@
 import React, {useState, useEffect} from 'react';
-import Basket from './pages/Basket';
-import {Link} from 'react-router-dom';
 import Navbar from './Components/NavBar/Navbar'
 import { Route, Routes, Navigate } from 'react-router-dom'
-import SignUp from './Components/Auth/SignUp';
 import ShoppingCart from './pages/ShoppingCart';
-import { BsCartCheck } from 'react-icons/bs'
 import Admin from './Administration/pages/Admin';
 import { onSnapshot, collection, query, orderBy } from "@firebase/firestore";
 import Feeds from './pages/Feeds';
 import Home from './pages/Home';
-import Product from './Components/Product';
 import Footer from './Components/Footer/Footer';
 import Signin  from './pages/Signin';
 import './app.css'
@@ -18,7 +13,6 @@ import { db } from "./firebase";
 import Blog from './pages/Blog';
 import BlogPost from './Components/BlogCard/BlogPost';
 import "./styles/global.css"
-import { userAccesToken } from './utils/fetchUserDetails'
 import { fetchUser } from './utils/fetchUserDetails'
 import DeliveryScreen from './screens/DeliveryScreen';
 import PostPage from './Components/Post/PostPage';
@@ -32,7 +26,8 @@ const HomeIndex = () => {
   const [products, setProducts ] = useState([])
   const [blogs, setBlogs] = useState([]) 
   const [cartItems, setCartItems] = useState([]);
-  const admin = true;
+  let admin;
+  const [administrator, setAdministrator] = useState([])
   const [user, setUser] = useState([])
 
   const onAdd = (product) => {
@@ -59,6 +54,18 @@ const HomeIndex = () => {
     }
     localStorage.setItem('cartItems', JSON.stringify(cartItems))
   }
+  
+  useEffect(
+    () =>
+      onSnapshot(
+        query(collection(db, "user")),
+        (snapshot) => {
+          setAdministrator(snapshot.docs.map((doc) => ({...doc.data(), id: doc.id })));
+        }
+        
+      ),
+    [db]
+  );
 
   useEffect(
     () =>
@@ -82,7 +89,6 @@ const HomeIndex = () => {
       ),
     [db]
   );
-
   useEffect(() => {
     const [userInfo] = fetchUser()
     setUser(userInfo)

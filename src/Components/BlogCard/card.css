@@ -47,6 +47,8 @@
 }
 
 .desc{
+    min-width: 260px;
+    max-width: 360px;
     color: grey;
     margin-bottom: 20px;
     line-height: 25px;
