@@ -3,6 +3,7 @@ import './styles.css'
 const Basket = (props) => {
     const { cartItems } = props;
 
+    console.log({cartItems})
     const itemsPrice = cartItems.reduce((acc, count) => acc + count.price * count.quantity, 0);
     const deliveryPrice = itemsPrice > 500 ? 0 : 20;
     const totalPrice = itemsPrice + deliveryPrice;
@@ -14,7 +15,7 @@ const Basket = (props) => {
             <div>
                 {cartItems.length === 0 && <div className="title-name">Cart is Empty, add Items to cart.</div>}
                 {cartItems.map((item) => (
-                    <div className='row'>
+                    <div id={item.id} key={itemsPrice.key} className='row'>
                         <div>{item.productName}</div>
                         R {item.productPrice}
                     </div>

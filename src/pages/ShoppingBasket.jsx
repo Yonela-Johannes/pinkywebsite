@@ -1,14 +1,11 @@
 import './shoppingbasket.css'
-import { MdOutlineDeleteForever } from "react-icons/md";
-import { IoMdAddCircleOutline } from "react-icons/io";
 
 const ShoppingBasket = (props) => {
     const { cartItems } = props;
     console.log({cartItems})
     const itemsPrice = cartItems.reduce((acc, count) => acc + count.productPrice * count.quantity, 0);
-    const taxPrice = itemsPrice * .18;
     const deliveryPrice = itemsPrice > 200 ? 0 : 20;
-    const totalPrice = itemsPrice + taxPrice + deliveryPrice;
+    const totalPrice = itemsPrice + deliveryPrice;
 
     return (
         <aside className="cartContainer">
@@ -18,8 +15,8 @@ const ShoppingBasket = (props) => {
                 {cartItems.length === 0 && <div className="title-name">Cart is Empty, add Items to cart.</div>}
                 {cartItems.map((item) => (
                     <div key={item.id} id={item.id} className='row'>
-                        <div className="cartItemName">{item.productName.length <= 15 ? item.name : 
-                        item.name.slice(0,13) + '...'
+                        <div className="cartItemName">
+                            {item.productName
                     }
                         
                         </div>
@@ -44,10 +41,6 @@ const ShoppingBasket = (props) => {
                     <div>R {itemsPrice.toFixed(2)}</div>
                 </div>
                 <div className='col'>
-                    <div>Tax</div>
-                    <div>R {taxPrice.toFixed(2)}</div>
-                </div>
-                <div className='col'>
                     <div>Delivery</div>
                     <div>R {deliveryPrice.toFixed(2)}</div>
                 </div>
@@ -57,6 +50,7 @@ const ShoppingBasket = (props) => {
                 </div>
                 <div className='col'>
                     <div><strong>Total items</strong></div>
+                    <div>{cartItems.length}</div>
                 </div>
                 </>
             )}

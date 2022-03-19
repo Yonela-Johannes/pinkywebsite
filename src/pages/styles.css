@@ -4,10 +4,16 @@
     background-color: rgb(243, 243, 243);
     width: 100%;
 }
+.cart-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: flex-end;
+}
 .mainCartContainer {
     padding-top: 85px;
     padding-bottom: 50px;
-    background-color: rgb(243, 243, 243);
+    background-color: rgb(252, 170, 170);
     width: 100%;
 }
 .testimonials {
@@ -356,4 +362,13 @@ button.badge {
     text-transform: uppercase;
     font-size: 10px;
     color: gray;
+}
+
+.checkoutButton {
+    margin: 20px;
+    padding: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    color: rgb(250, 48, 81);
+    text-transform: uppercase;
 }

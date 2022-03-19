@@ -32,31 +32,29 @@ const HomeIndex = () => {
   const [products, setProducts ] = useState([])
   const [blogs, setBlogs] = useState([]) 
   const [cartItems, setCartItems] = useState([]);
-  const admin = false;
-  // const [user, setUser] = useState([])
-  let user = false
+  const admin = true;
+  const [user, setUser] = useState([])
 
-  const onAdd = (id) => {
-    console.log({id})
-    const exist = cartItems.find(x => x.id === id)
+  const onAdd = (product) => {
+    console.log({product})
+    const exist = cartItems.find(x => x.id === product.id)
     if(exist){
       setCartItems(cartItems.map((x) => 
-        x.id === id ? {...exist, quantity: exist.quantity + 1} : x
+        x.id === product.id ? {...exist, quantity: exist.quantity + 1} : x
       ));
-    } 
-    else {
-      setCartItems([...cartItems, {...id, quantity: 1}])
+    } else {
+      setCartItems([...cartItems, {...product, quantity: 1}])
     }
     localStorage.setItem('cartItems', JSON.stringify(cartItems));
   };
 
-  const onRemove = (id) => {
-    const exist = cartItems.find((x) => x.id === id);
+  const onRemove = (product) => {
+    const exist = cartItems.find((x) => x.id === product.id);
     if(exist.quantity === 1){
-      setCartItems(cartItems.filter((x) => x.id !== id));
+      setCartItems(cartItems.filter((x) => x.id !== product.id));
     }else {
       setCartItems(cartItems.map((x) => 
-      x.id === id ? {...exist, quantity: exist.quantity - 1} : x
+      x.id === product.id ? {...exist, quantity: exist.quantity - 1} : x
     ));  
     }
     localStorage.setItem('cartItems', JSON.stringify(cartItems))
@@ -67,7 +65,7 @@ const HomeIndex = () => {
       onSnapshot(
         query(collection(db, "products"), orderBy("timestamp", "desc")),
         (snapshot) => {
-          setProducts(snapshot.docs);
+          setProducts(snapshot.docs.map((doc) => ({...doc.data(), id: doc.id })));
         }
         
       ),
@@ -85,10 +83,10 @@ const HomeIndex = () => {
     [db]
   );
 
-  // useEffect(() => {
-  //   const [userInfo] = fetchUser()
-  //   setUser(userInfo)
-  // }, [])
+  useEffect(() => {
+    const [userInfo] = fetchUser()
+    setUser(userInfo)
+  }, [])
 
   return (
     <div className="App">
@@ -103,29 +101,14 @@ const HomeIndex = () => {
                       <div className="container">                   
                             {products.map((product) =>
                               (
-                                <Home key={product.id} id={product.id} product={product.data()} onAdd={onAdd} cartItems={cartItems}/>
+                                <Home key={product.id} id={product.id} product={product} onAdd={onAdd} />
                               )
                             )
                           }
                       </div>
-                      {/* {cartItems.length > 0 && (
-                            <div className="basket">
-                              <Basket products={products.map((product) => 
-                                (
-                                  <div key={product.id} id={product.id}>
-                                      {product.data()}
-                                  </div>
-                                )
-                              )
-                              } onAdd={onAdd} onRemove={onRemove} cartItems={cartItems} />
-                              <Link to="/cart">
-                                <button className="homeShoppingCartButton" ><BsCartCheck className='homeCartIcon' /><div>Go to Shopping Cart</div></button>
-                              </Link>
-                            </div>
-                          )} */}
                     </div>
                     } />
-                    {/* <Route path='/cart' element={<ShoppingCart products={products} onAdd={onAdd} onRemove={onRemove} cartItems={cartItems} />} /> */}
+                    <Route path='/cart' element={<ShoppingCart products={products} onAdd={onAdd} cartItems={cartItems} />} />
                     <Route path='/feeds' element={<Feeds user={user} admin={admin} />} />
                     <Route path='/Admin' element={<Admin />} />
                     <Route path='/blog' element={<Blog user={user} admin={admin}  />} />
@@ -145,33 +128,18 @@ const HomeIndex = () => {
                     <div className='main'>
                       <h2 className='head'>Products</h2>
                       <div className='homeContainer'>
-                        <div className="container">                   
-                              {products.map((product) =>
-                                (
-                                  <Home key={product.id} id={product.id} product={product.data()} onAdd={onAdd} onRemove={onRemove} cartItems={cartItems}/>
-                                )
+                      <div className="container">                   
+                            {products.map((product) =>
+                              (
+                                <Home key={product.id} id={product.id} product={product} onAdd={onAdd} />
                               )
-                            }
-                        </div>
-                          {/* {cartItems.length > 0 && (
-                            <div className="basket">
-                              <Basket products={products.map((product) => 
-                                (
-                                  <div key={product.id} id={product.id}>
-                                      {product.data()}
-                                  </div>
-                                )
-                              )
-                              } onAdd={onAdd} onRemove={onRemove} cartItems={cartItems} />
-                              <Link to="/cart">
-                                <button className="homeShoppingCartButton" ><BsCartCheck className='homeCartIcon' /><div>Go to Shopping Cart</div></button>
-                              </Link>
-                            </div>
-                          )} */}
+                            )
+                          }
+                      </div>
                       </div>
                     </div>
                     } />
-                    {/* <Route path='/cart' element={<ShoppingCart key={products.id} id={products.id} products={products} onAdd={onAdd} onRemove={onRemove} cartItems={cartItems} />} /> */}
+                    <Route path='/cart' element={<ShoppingCart key={products.id} id={products.id} products={products} onAdd={onAdd} cartItems={cartItems} />} />
                     <Route path='/feeds' element={<Feeds user={user} admin={admin}  />} />
                     <Route path='/Admin' element={<Admin />} />
                     <Route path='/blog' element={<Blog user={user} admin={admin}  />} />
