@@ -13,7 +13,7 @@
 .mainCartContainer {
     padding-top: 85px;
     padding-bottom: 50px;
-    background-color: rgb(252, 170, 170);
+    background-color: rgb(255, 255, 255);
     width: 100%;
 }
 .testimonials {
@@ -236,7 +236,6 @@ button.badge {
         padding: 10px 10px;
         align-items: center;
     }
-    
 }
 @media only screen and (max-width: 1000px ){
     .mainCartContainer {
@@ -371,4 +370,21 @@ button.badge {
     font-weight: bold;
     color: rgb(250, 48, 81);
     text-transform: uppercase;
+}
+
+/* input container */
+
+.input-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 5px 10px;
+    border: 1px solid gray;
+    border-radius: 5px;
+    max-width: 500px;
+}
+
+.inputContainer {
+    margin: 0 auto;
+    max-width: 600px;
 }

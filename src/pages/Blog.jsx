@@ -21,9 +21,9 @@ export default function Blog({user, admin}) {
         <div className='main'>
           <h2 className='head'>Explore</h2>
           {admin && (
-            <>
+            <div className='inputContainer'>
             <BlogInput user={user} admin={admin} />
-            </>
+            </div>
           )}
             <div className='blogHome'>
                 {blogs.map(blog => (

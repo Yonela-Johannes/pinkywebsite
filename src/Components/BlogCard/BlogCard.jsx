@@ -30,7 +30,7 @@ export default function BlogCard(props) {
   const {blog, user, id} = props;
   const [likes, setLikes] = useState([]);
   const [liked, setLiked] = useState(false);
-  console.log({props})
+
   useEffect(
     () =>
       onSnapshot(collection(db, "blog", id, "likes"), (snapshot) =>
@@ -70,7 +70,7 @@ const likePost = async () => {
             <div className="blogPostBody">
               <div className='userDetailsContainer'>
                 <img className='userImage blogImage' src={logo} alt='' />  
-              <p className='releaseDate'><Moment fromNow>{blog?.timestamp.toDate()}</Moment></p>
+              <p className='releaseDate'><Moment fromNow>{blog?.timestamp?.toDate()}</Moment></p>
               </div>
             </div>
 

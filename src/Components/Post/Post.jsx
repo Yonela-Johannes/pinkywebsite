@@ -89,7 +89,7 @@ function Post(props) {
                             <span className={`text-sm sm:text-[12px] cursor-pointer ${!postPage && "ml-1.5"}`}>@bepleasuredbypinky</span>
                         </div>
                         <span className="hover:underline text-sm sm:text-[13px] cursor-pointer">
-                            <Moment fromNow>{post?.timestamp.toDate()}</Moment>
+                            <Moment fromNow>{post?.timestamp?.toDate()}</Moment>
                         </span>
                         {!postPage && (
                             <p className="text-[#272727] text-[16px] sm:text-base mt-2 ml-10 cursor-pointer">{post?.text}</p>

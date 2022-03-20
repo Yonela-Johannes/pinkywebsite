@@ -27,10 +27,12 @@ const Navigation = (props) => {
                                             </div>
                                         </NavLink>
                                     </li>
+                                    {!countCartItems < 1 && (
+                                        <Badge className='badge' badgeContent={countCartItems} />
+                                    )}
                                     <li className='navLink'>
                                         <NavLink to='/cart'>
                                             <div aria-label='Show cart items'>
-                                                <Badge className='badge' badgeContent={countCartItems} />
                                                     <MdOutlineShoppingBag className='icon' />
                                             </div>
                                         </NavLink>

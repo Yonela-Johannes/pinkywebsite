@@ -26,9 +26,9 @@ const HomeIndex = () => {
   const [products, setProducts ] = useState([])
   const [blogs, setBlogs] = useState([]) 
   const [cartItems, setCartItems] = useState([]);
-  let admin;
+  let admin = true;
   const [administrator, setAdministrator] = useState([])
-  const [user, setUser] = useState([])
+  const [user, setUser] = useState(null)
 
   const onAdd = (product) => {
     console.log({product})

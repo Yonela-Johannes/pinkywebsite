@@ -16,7 +16,6 @@ import { getDownloadURL, ref, uploadString } from "@firebase/storage";
 export default function BlogInput({user}) {
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
-    const [longDes, setLongDes] = useState('');
     const [selectedBlogImage, setSelectedBlogImage] = useState(null);
     const [loading, setLoading] = useState(false);
     const filePickerRef = useRef(null)
@@ -30,7 +29,6 @@ export default function BlogInput({user}) {
         const docRef = await addDoc(collection(db, "blog"), {
             title: title,
             description: description,
-            longDesc: longDes,
             timestamp: serverTimestamp(),
           });
         const imageRef = ref(storage, `blog/${docRef.id}/image`);
@@ -47,7 +45,6 @@ export default function BlogInput({user}) {
           setLoading(false);
           setTitle("");
           setDescription("");
-          setLongDes("");
           setSelectedBlogImage(null);
     }
     const addImageToPost = (e) => {
@@ -64,10 +61,11 @@ export default function BlogInput({user}) {
   return (
     <>
         {!loading && (
-        <div className={`border-b border-t flex space-x-3 overflow-y-scroll `}>
+        <div className={`border-b border-t flex space-x-3`}>
             <img src={logo} alt='logo' className='h-11 w-9 rounded-full cursor-pointer' />
 
-            <div className="w-full divide-y divide-gray-300">
+            <div className={`w-full divide-y divide-gray-300`}>
+              <div className='input-wrapper'>
                 <input className="bg-transparent outline-none text-[black] text-[14px] placeholder-gray-400 tracking-wide w-full" 
                 placeholder='Blog title'
                 value={title} onChange={(e)=> setTitle(e.target.value)}/>
@@ -76,10 +74,7 @@ export default function BlogInput({user}) {
                         placeholder="Short Description"
                         value={description} onChange={(e) => setDescription(e.target.value)}
                         />
-                    <textarea rows="4" className="bg-transparent outline-none text-[black] text-[14px] placeholder-gray-400 tracking-wide w-full min-h-[55px]" 
-                    placeholder='Description Details'
-                        value={longDes} onChange={(e) => setLongDes(e.target.value)}
-                    />
+              </div>
                     {selectedBlogImage && (
                         <div className="relative">
                             <div className="absolute w-8 h-8 bg-[black] hover:bg-[grey] bg-opacity-75 rounded-full flex items-center justify-center top-1 left-1 cursor-pointer"
@@ -101,7 +96,7 @@ export default function BlogInput({user}) {
                                 <button className="text-[12px] text-[gray] border-[gray] py-1 font-bold shadow-md hover:bg-[pink]
                                     disabled:hover:bg-[#dddddd] disabled:opacity-50 disabled:cursor-default
                                 "
-                                    disabled={!title.trim() | !description.trim() | !longDes.trim() && !selectedBlogImage} 
+                                    disabled={!title.trim() | !description.trim() && !selectedBlogImage} 
                                     onClick={postBlog}
                                 >Post Blog</button>
                             </div>
